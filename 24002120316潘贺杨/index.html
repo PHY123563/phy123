@@ -147,7 +147,7 @@
 
         .catalog {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
             gap: 16px;
         }
 
@@ -182,11 +182,11 @@
             opacity: .8;
         }
 
-        .entry:nth-child(2)::after {
+        .entry:nth-child(3n + 2)::after {
             background: var(--coral);
         }
 
-        .entry:nth-child(3)::after {
+        .entry:nth-child(3n)::after {
             background: var(--teal);
         }
 
@@ -355,7 +355,7 @@
         <section class="section" aria-labelledby="catalog-title">
             <div class="section-heading">
                 <h2 id="catalog-title">课堂目录</h2>
-                <span>已完成模块 / 03</span>
+                <span>课堂练习 / 06 · 资源页 / 01</span>
             </div>
             <div class="catalog">
                 <a class="entry" href="2.html">
@@ -370,15 +370,31 @@
                     <div>
                         <span class="entry-number">02 / ICON</span>
                         <h3>字体图标</h3>
-                        <p>探索图标资源、底部 Tab 导航与点击状态切换。</p>
+                        <p>使用 SVG 图标构建底部 Tab 导航，并练习点击状态切换。</p>
+                    </div>
+                    <span class="entry-action">进入练习</span>
+                </a>
+                <a class="entry" href="6.html">
+                    <div>
+                        <span class="entry-number">03 / JAVASCRIPT</span>
+                        <h3>JS 函数</h3>
+                        <p>通过随机数猜谜练习匿名函数、箭头函数与函数调用。</p>
+                    </div>
+                    <span class="entry-action">进入练习</span>
+                </a>
+                <a class="entry" href="4.html">
+                    <div>
+                        <span class="entry-number">04 / OBJECT</span>
+                        <h3>JS 对象的应用</h3>
+                        <p>用个人明信片案例组织对象属性与方法，练习对象状态更新。</p>
                     </div>
                     <span class="entry-action">进入练习</span>
                 </a>
                 <a class="entry" href="font/demo_index.html">
                     <div>
-                        <span class="entry-number">03 / RESOURCE</span>
-                        <h3>图标资源库</h3>
-                        <p>查看本地字体图标的演示页与可用资源说明。</p>
+                        <span class="entry-number">RESOURCE / ICONFONT</span>
+                        <h3>字体图标资源演示</h3>
+                        <p>查看图标字体、本地资源与多种引用方式的演示。</p>
                     </div>
                     <span class="entry-action">查看资源</span>
                 </a>
@@ -392,12 +408,12 @@
             </div>
             <div class="future">
                 <div class="future-panel">
-                    <h3>更多页面练习</h3>
-                    <p>新的课堂实践会继续收录到这里，保持目录清晰，方便回看每一次进步。</p>
+                    <h3>JS 对象其余模块</h3>
+                    <p>后续内容待补充，新增课堂练习后会继续收录到本目录。</p>
                 </div>
                 <div class="future-panel">
-                    <h3>学习轨迹</h3>
-                    <p>从结构、布局到交互，逐步建立属于自己的网页设计作品集。</p>
+                    <h3>更多课堂实践</h3>
+                    <p>新模块持续增加中，已完成的页面可从上方课堂目录直接进入。</p>
                 </div>
             </div>
         </section>
@@ -409,7 +425,7 @@
             </div>
             <blockquote class="prompt">
                 <span class="prompt-label">USER REQUEST</span>
-                创建一个新页面，包括本目录下的所有网页的超链接，使用原生代码，不使用cdn，新页面名称为index.html，主题为潘贺杨的《高级网页设计》课堂实践，美化页面，课堂目录中包含flex复习、字体图标、其余模块后续在增加。页面中包括本提示词。
+                创建一个新页面，包括本目录下的所有网页的超链接，使用原生代码，不使用cdn，新页面名称为index.html，主题为潘贺杨的《高级网页设计》课堂实践，美化页面，课堂目录中包含flex复习、字体图标、JS函数、JS对象的应用、JS对象其余模块后续在增加。页面中包括本提示词。
             </blockquote>
         </section>
     </main>
