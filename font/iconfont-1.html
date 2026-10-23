@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="字形工坊 · 字体图标 Font Awesome 展示页（字体图标方式）— 潘贺杨《高级网页设计》课堂实践">
+    <title>字形工坊 · 字体图标 Font Awesome — 潘贺杨</title>
+    <link rel="stylesheet" href="cdn/fontawesome/css/all.min.css">
+    <style>
+        :root {
+            --phy-paper: #f5f1e8;
+            --phy-white: #fffdf8;
+            --phy-ink: #17202a;
+            --phy-muted: #66737d;
+            --phy-coral: #ef6f61;
+            --phy-gold: #f5c451;
+            --phy-teal: #2c8c88;
+            --phy-line: rgba(23, 32, 42, .14);
+            --phy-shadow: 0 18px 45px rgba(23, 32, 42, .12);
+            --phy-icon-size: 40px;
+            --phy-lab-color: #17202a;
+        }
+
+        * { box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            margin: 0;
+            color: var(--phy-ink);
+            background:
+                radial-gradient(circle at 12% 8%, rgba(245, 196, 81, .25), transparent 24rem),
+                radial-gradient(circle at 90% 18%, rgba(44, 140, 136, .16), transparent 22rem),
+                var(--phy-paper);
+            font-family: Georgia, "Times New Roman", "Microsoft YaHei", serif;
+            line-height: 1.6;
+        }
+
+        a { color: inherit; text-decoration: none; }
+
+        /* ===== 顶部品牌栏 ===== */
+        .phy-topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 24px 28px;
+        }
+
+        .phy-brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            font-family: "Microsoft YaHei", sans-serif;
+            font-weight: 700;
+            letter-spacing: .08em;
+            font-size: 15px;
+        }
+
+        .phy-mark {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--phy-coral);
+            box-shadow: 9px 5px 0 var(--phy-gold);
+        }
+
+        .phy-brand em {
+            font-style: normal;
+            font-family: Georgia, serif;
+            font-weight: 400;
+            color: var(--phy-muted);
+            font-size: 12px;
+            letter-spacing: .22em;
+        }
+
+        .phy-home-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: "Microsoft YaHei", sans-serif;
+            font-size: 13px;
+            color: var(--phy-muted);
+            padding: 8px 16px;
+            border: 1px solid var(--phy-line);
+            border-radius: 999px;
+            transition: .25s ease;
+        }
+
+        .phy-home-link:hover {
+            color: var(--phy-ink);
+            border-color: var(--phy-ink);
+            transform: translateY(-2px);
+        }
+
+        /* ===== Hero ===== */
+        .phy-hero {
+            display: grid;
+            grid-template-columns: minmax(0, 1.15fr) minmax(280px, .85fr);
+            gap: 48px;
+            align-items: center;
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 48px 28px 40px;
+        }
+
+        .phy-kicker {
+            font-family: "Microsoft YaHei", sans-serif;
+            font-size: 12px;
+            letter-spacing: .3em;
+            color: var(--phy-teal);
+            margin: 0 0 18px;
+        }
+
+        .phy-title {
+            font-size: clamp(44px, 6vw, 76px);
+            line-height: 1.08;
+            margin: 0 0 20px;
+            font-weight: 400;
+        }
+
+        .phy-title span {
+            display: block;
+            font-style: italic;
+            color: var(--phy-coral);
+            font-size: .52em;
+            margin-top: 10px;
+        }
+
+        .phy-lede {
+            color: var(--phy-muted);
+            font-family: "Microsoft YaHei", sans-serif;
+            font-size: 15px;
+            max-width: 46ch;
+            margin: 0;
+        }
+
+        .phy-note-card {
+            position: relative;
+            background: var(--phy-white);
+            border: 1px solid var(--phy-line);
+            border-radius: 18px;
+            padding: 28px 26px;
+            box-shadow: var(--phy-shadow);
+        }
+
+        .phy-note-card::after {
+            content: "";
+            position: absolute;
+            right: -10px;
+            bottom: -10px;
+            width: 56px;
+            height: 56px;
+            border-radius: 12px;
+            background: var(--phy-gold);
+            z-index: -1;
+        }
+
+        .phy-note-title {
+            margin: 0 0 12px;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .phy-note-title i { color: var(--phy-coral); }
+
+        .phy-note-text {
+            margin: 0 0 14px;
+            font-family: "Microsoft YaHei", sans-serif;
+            font-size: 13px;
+            color: var(--phy-muted);
+        }
+
+        .phy-code {
+            font-family: Consolas, Monaco, monospace;
+            font-size: 12.5px;
+            background: var(--phy-ink);
+            color: var(--phy-gold);
+            border-radius: 10px;
+            padding: 12px 14px;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        /* ===== 实验台 ===== */
+        .phy-lab {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 0 28px 48px;
+        }
+
+        .phy-lab-card {
+            background: var(--phy-white);
+            border: 1px solid var(--phy-line);
+            border-radius: 20px;
+            box-shadow: var(--phy-shadow);
+            padding: 30px 32px;
+        }
+
+        .phy-lab-head {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 22px;
+        }
+
+        .phy-lab-title {
+            margin: 0;
+            font-size: 22px;
+        }
+
+        .phy-lab-title em {
+            font-style: italic;
+            color: var(--phy-teal);
+            font-size: 14px;
+            margin-left: 10px;
+            letter-spacing: .14em;
+        }
+
+        .phy-controls {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+            flex-wrap: wrap;
+            font-family: "Microsoft YaHei", sans-serif;
+            font-size: 13px;
+            color: var(--phy-muted);
+        }
+
+        .phy-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .phy-range {
+            accent-color: var(--phy-coral);
+            width: 160px;
+        }
+
+        .phy-readout {
+            font-family: Consolas, Monaco, monospace;
+            font-size: 12px;
+            color: var(--phy-ink);
+            background: var(--phy-paper);
+            border: 1px solid var(--phy-line);
+            border-radius: 6px;
+            padding: 2px 8px;
+            min-width: 52px;
+            text-align: center;
+        }
+
+        .phy-swatches { display: flex; gap: 8px; }
+
+        .phy-swatch {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            cursor: pointer;
+            padding: 0;
+            transition: .2s ease;
+        }
+
+        .phy-swatch:hover { transform: scale(1.15); }
+
+        .phy-swatch.is-active { border-color: var(--phy-ink); }
+
+        .phy-preview {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: clamp(18px, 4vw, 44px);
+            padding: 34px 10px;
+            border: 1px dashed var(--phy-line);
+            border-radius: 14px;
+            background:
+                radial-gradient(circle at 50% 0%, rgba(239, 111, 97, .08), transparent 60%),
+                var(--phy-paper);
+        }
+
+        .phy-preview i {
+            font-size: var(--phy-icon-size);
+            color: var(--phy-lab-color);
+            transition: font-size .18s ease, color .18s ease;
+        }
+
+        /* ===== 图标画廊 ===== */
+        .phy-gallery {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 0 28px 64px;
+        }
+
+        .phy-group + .phy-group { margin-top: 44px; }
+
+        .phy-group-head {
+            display: flex;
+            align-items: baseline;
+            gap: 16px;
+            margin: 0 0 18px;
+        }
+
+        .phy-group-title {
+            margin: 0;
+            font-size: 24px;
+            font-weight: 400;
+        }
+
+        .phy-group-tag {
+            font-family: Consolas, Monaco, monospace;
+            font-size: 12px;
+            color: var(--phy-muted);
+            letter-spacing: .12em;
+        }
+
+        .phy-group-tag b { color: var(--phy-coral); font-weight: 400; }
+
+        .phy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 14px;
+        }
+
+        .phy-card {
+            background: var(--phy-white);
+            border: 1px solid var(--phy-line);
+            border-radius: 14px;
+            padding: 22px 12px 16px;
+            text-align: center;
+            transition: .25s ease;
+        }
+
+        .phy-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--phy-shadow);
+            border-color: transparent;
+        }
+
+        .phy-card i {
+            font-size: 30px;
+            color: var(--phy-ink);
+            transition: color .25s ease;
+        }
+
+        .phy-card:hover i { color: var(--phy-coral); }
+
+        .phy-name {
+            display: block;
+            margin-top: 10px;
+            font-family: Consolas, Monaco, monospace;
+            font-size: 11.5px;
+            color: var(--phy-muted);
+        }
+
+        /* ===== 页脚 ===== */
+        .phy-footer {
+            border-top: 1px solid var(--phy-line);
+            padding: 26px 28px 40px;
+            text-align: center;
+            font-family: "Microsoft YaHei", sans-serif;
+            font-size: 12.5px;
+            color: var(--phy-muted);
+            letter-spacing: .08em;
+        }
+
+        .phy-footer b { color: var(--phy-coral); font-weight: 400; }
+
+        @media (max-width: 860px) {
+            .phy-hero { grid-template-columns: 1fr; gap: 32px; }
+        }
+    </style>
+</head>
+<body>
+    <header class="phy-topbar">
+        <a class="phy-brand" href="index.html">
+            <span class="phy-mark"></span>
+            <span class="phy-brand-text">字形工坊 <em>GLYPH ATELIER</em></span>
+        </a>
+        <nav>
+            <a class="phy-home-link" href="index.html"><i class="fa-solid fa-house" aria-hidden="true"></i> 返回首页 index.html</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="phy-hero">
+            <div>
+                <p class="phy-kicker">CLASS PRACTICE · NO.01 · FONT ICON</p>
+                <h1 class="phy-title">字体图标<span>Icon Font · Font Awesome</span></h1>
+                <p class="phy-lede">把图形铸进字体。每一个图标都是一个字符，由 @font-face 加载的 woff2 / ttf 字体文件绘制，用 class 复用、像文字一样缩放与上色。</p>
+            </div>
+            <aside class="phy-note-card">
+                <h2 class="phy-note-title"><i class="fa-solid fa-font-awesome" aria-hidden="true"></i>字体图标的原理</h2>
+                <p class="phy-note-text">CDN 的 CSS 已被下载到本地 cdn 目录，随它一同加载字体文件；图标以连字（ligature）映射为字符：</p>
+                <div class="phy-code">&lt;i class="fa-solid fa-heart"&gt;&lt;/i&gt;</div>
+            </aside>
+        </section>
+
+        <section class="phy-lab">
+            <div class="phy-lab-card">
+                <div class="phy-lab-head">
+                    <h2 class="phy-lab-title">实验台<em>PLAYGROUND</em></h2>
+                    <div class="phy-controls">
+                        <label class="phy-control">字号
+                            <input class="phy-range" id="phy_sizeRange" type="range" min="18" max="80" value="40">
+                            <span class="phy-readout" id="phy_sizeRead">40px</span>
+                        </label>
+                        <span class="phy-control">颜色
+                            <span class="phy-swatches" id="phy_swatches">
+                                <button class="phy-swatch is-active" type="button" data-phy-color="#17202a" style="background:#17202a" aria-label="墨色"></button>
+                                <button class="phy-swatch" type="button" data-phy-color="#ef6f61" style="background:#ef6f61" aria-label="珊瑚"></button>
+                                <button class="phy-swatch" type="button" data-phy-color="#f5c451" style="background:#f5c451" aria-label="鎏金"></button>
+                                <button class="phy-swatch" type="button" data-phy-color="#2c8c88" style="background:#2c8c88" aria-label="青碧"></button>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                <div class="phy-preview" id="phy_preview">
+                    <i class="fa-solid fa-heart"></i>
+                    <i class="fa-solid fa-palette"></i>
+                    <i class="fa-solid fa-feather"></i>
+                    <i class="fa-brands fa-html5"></i>
+                    <i class="fa-solid fa-gem"></i>
+                </div>
+            </div>
+        </section>
+
+        <section class="phy-gallery">
+            <div class="phy-group">
+                <div class="phy-group-head">
+                    <h2 class="phy-group-title">实底风格</h2>
+                    <span class="phy-group-tag"><b>fa-solid</b> · Font Awesome 6 Free</span>
+                </div>
+                <div class="phy-grid">
+                    <div class="phy-card"><i class="fa-solid fa-heart"></i><span class="phy-name">fa-heart</span></div>
+                    <div class="phy-card"><i class="fa-solid fa-star"></i><span class="phy-name">fa-star</span></div>
+                    <div class="phy-card"><i class="fa-solid fa-camera"></i><span class="phy-name">fa-camera</span></div>
+                    <div class="phy-card"><i class="fa-solid fa-music"></i><span class="phy-name">fa-music</span></div>
+                    <div class="phy-card"><i class="fa-solid fa-bolt"></i><span class="phy-name">fa-bolt</span></div>
+                    <div class="phy-card"><i class="fa-solid fa-fire"></i><span class="phy-name">fa-fire</span></div>
+                    <div class="phy-card"><i class="fa-solid fa-palette"></i><span class="phy-name">fa-palette</span></div>
+                    <div class="phy-card"><i class="fa-solid fa-coffee"></i><span class="phy-name">fa-coffee</span></div>
+                    <div class="phy-card"><i class="fa-solid fa-leaf"></i><span class="phy-name">fa-leaf</span></div>
+                    <div class="phy-card"><i class="fa-solid fa-moon"></i><span class="phy-name">fa-moon</span></div>
+                    <div class="phy-card"><i class="fa-solid fa-sun"></i><span class="phy-name">fa-sun</span></div>
+                    <div class="phy-card"><i class="fa-solid fa-gamepad"></i><span class="phy-name">fa-gamepad</span></div>
+                </div>
+            </div>
+
+            <div class="phy-group">
+                <div class="phy-group-head">
+                    <h2 class="phy-group-title">线稿风格</h2>
+                    <span class="phy-group-tag"><b>fa-regular</b> · Font Awesome 6 Free</span>
+                </div>
+                <div class="phy-grid">
+                    <div class="phy-card"><i class="fa-regular fa-heart"></i><span class="phy-name">fa-heart</span></div>
+                    <div class="phy-card"><i class="fa-regular fa-star"></i><span class="phy-name">fa-star</span></div>
+                    <div class="phy-card"><i class="fa-regular fa-bell"></i><span class="phy-name">fa-bell</span></div>
+                    <div class="phy-card"><i class="fa-regular fa-envelope"></i><span class="phy-name">fa-envelope</span></div>
+                    <div class="phy-card"><i class="fa-regular fa-clock"></i><span class="phy-name">fa-clock</span></div>
+                    <div class="phy-card"><i class="fa-regular fa-image"></i><span class="phy-name">fa-image</span></div>
+                    <div class="phy-card"><i class="fa-regular fa-face-smile"></i><span class="phy-name">fa-face-smile</span></div>
+                    <div class="phy-card"><i class="fa-regular fa-bookmark"></i><span class="phy-name">fa-bookmark</span></div>
+                </div>
+            </div>
+
+            <div class="phy-group">
+                <div class="phy-group-head">
+                    <h2 class="phy-group-title">品牌标志</h2>
+                    <span class="phy-group-tag"><b>fa-brands</b> · Font Awesome 6 Brands</span>
+                </div>
+                <div class="phy-grid">
+                    <div class="phy-card"><i class="fa-brands fa-weibo"></i><span class="phy-name">fa-weibo</span></div>
+                    <div class="phy-card"><i class="fa-brands fa-weixin"></i><span class="phy-name">fa-weixin</span></div>
+                    <div class="phy-card"><i class="fa-brands fa-qq"></i><span class="phy-name">fa-qq</span></div>
+                    <div class="phy-card"><i class="fa-brands fa-github"></i><span class="phy-name">fa-github</span></div>
+                    <div class="phy-card"><i class="fa-brands fa-html5"></i><span class="phy-name">fa-html5</span></div>
+                    <div class="phy-card"><i class="fa-brands fa-css3-alt"></i><span class="phy-name">fa-css3-alt</span></div>
+                    <div class="phy-card"><i class="fa-brands fa-js"></i><span class="phy-name">fa-js</span></div>
+                    <div class="phy-card"><i class="fa-brands fa-vuejs"></i><span class="phy-name">fa-vuejs</span></div>
+                    <div class="phy-card"><i class="fa-brands fa-react"></i><span class="phy-name">fa-react</span></div>
+                    <div class="phy-card"><i class="fa-brands fa-node-js"></i><span class="phy-name">fa-node-js</span></div>
+                    <div class="phy-card"><i class="fa-brands fa-figma"></i><span class="phy-name">fa-figma</span></div>
+                    <div class="phy-card"><i class="fa-brands fa-bootstrap"></i><span class="phy-name">fa-bootstrap</span></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="phy-footer">
+        潘贺杨 · <b>24002120316</b> · 《高级网页设计》课堂实践 · 字体图标 Font Awesome（本地化 CDN）
+    </footer>
+
+    <script>
+        var phy_sizeRange = document.getElementById('phy_sizeRange');
+        var phy_sizeRead = document.getElementById('phy_sizeRead');
+
+        phy_sizeRange.addEventListener('input', function () {
+            document.documentElement.style.setProperty('--phy-icon-size', phy_sizeRange.value + 'px');
+            phy_sizeRead.textContent = phy_sizeRange.value + 'px';
+        });
+
+        var phy_swatches = document.getElementById('phy_swatches');
+        phy_swatches.addEventListener('click', function (phy_event) {
+            var phy_btn = phy_event.target.closest('.phy-swatch');
+            if (!phy_btn) { return; }
+            document.querySelectorAll('.phy-swatch').forEach(function (phy_item) {
+                phy_item.classList.remove('is-active');
+            });
+            phy_btn.classList.add('is-active');
+            document.documentElement.style.setProperty('--phy-lab-color', phy_btn.dataset.phyColor);
+        });
+    </script>
+</body>
+</html>

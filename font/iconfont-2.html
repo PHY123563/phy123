@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="线稿研究所 · Lucide 图标展示页（SVG 方式）— 潘贺杨《高级网页设计》课堂实践">
+    <title>线稿研究所 · SVG 图标 Lucide — 潘贺杨</title>
+    <style>
+        :root {
+            --phy-paper: #f5f1e8;
+            --phy-white: #fffdf8;
+            --phy-ink: #17202a;
+            --phy-muted: #66737d;
+            --phy-coral: #ef6f61;
+            --phy-gold: #f5c451;
+            --phy-teal: #2c8c88;
+            --phy-line: rgba(23, 32, 42, .14);
+            --phy-shadow: 0 18px 45px rgba(23, 32, 42, .12);
+            --phy-icon-size: 40px;
+            --phy-lab-color: #17202a;
+            --phy-stroke: 2;
+        }
+
+        * { box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            margin: 0;
+            color: var(--phy-ink);
+            background:
+                radial-gradient(circle at 88% 8%, rgba(44, 140, 136, .22), transparent 24rem),
+                radial-gradient(circle at 8% 22%, rgba(245, 196, 81, .2), transparent 20rem),
+                var(--phy-paper);
+            font-family: Georgia, "Times New Roman", "Microsoft YaHei", serif;
+            line-height: 1.6;
+        }
+
+        a { color: inherit; text-decoration: none; }
+
+        /* ===== 顶部品牌栏 ===== */
+        .phy-topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 24px 28px;
+        }
+
+        .phy-brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            font-family: "Microsoft YaHei", sans-serif;
+            font-weight: 700;
+            letter-spacing: .08em;
+            font-size: 15px;
+        }
+
+        .phy-mark {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--phy-teal);
+            box-shadow: 9px 5px 0 var(--phy-coral);
+        }
+
+        .phy-brand em {
+            font-style: normal;
+            font-family: Georgia, serif;
+            font-weight: 400;
+            color: var(--phy-muted);
+            font-size: 12px;
+            letter-spacing: .22em;
+        }
+
+        .phy-home-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: "Microsoft YaHei", sans-serif;
+            font-size: 13px;
+            color: var(--phy-muted);
+            padding: 8px 16px;
+            border: 1px solid var(--phy-line);
+            border-radius: 999px;
+            transition: .25s ease;
+        }
+
+        .phy-home-link:hover {
+            color: var(--phy-ink);
+            border-color: var(--phy-ink);
+            transform: translateY(-2px);
+        }
+
+        /* ===== Hero ===== */
+        .phy-hero {
+            display: grid;
+            grid-template-columns: minmax(0, 1.15fr) minmax(280px, .85fr);
+            gap: 48px;
+            align-items: center;
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 48px 28px 40px;
+        }
+
+        .phy-kicker {
+            font-family: "Microsoft YaHei", sans-serif;
+            font-size: 12px;
+            letter-spacing: .3em;
+            color: var(--phy-coral);
+            margin: 0 0 18px;
+        }
+
+        .phy-title {
+            font-size: clamp(44px, 6vw, 76px);
+            line-height: 1.08;
+            margin: 0 0 20px;
+            font-weight: 400;
+        }
+
+        .phy-title span {
+            display: block;
+            font-style: italic;
+            color: var(--phy-teal);
+            font-size: .52em;
+            margin-top: 10px;
+        }
+
+        .phy-lede {
+            color: var(--phy-muted);
+            font-family: "Microsoft YaHei", sans-serif;
+            font-size: 15px;
+            max-width: 46ch;
+            margin: 0;
+        }
+
+        .phy-note-card {
+            position: relative;
+            background: var(--phy-white);
+            border: 1px solid var(--phy-line);
+            border-radius: 18px;
+            padding: 28px 26px;
+            box-shadow: var(--phy-shadow);
+        }
+
+        .phy-note-card::after {
+            content: "";
+            position: absolute;
+            right: -10px;
+            bottom: -10px;
+            width: 56px;
+            height: 56px;
+            border-radius: 12px;
+            background: var(--phy-teal);
+            z-index: -1;
+        }
+
+        .phy-note-title {
+            margin: 0 0 12px;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .phy-note-title svg { color: var(--phy-teal); }
+
+        .phy-note-text {
+            margin: 0 0 14px;
+            font-family: "Microsoft YaHei", sans-serif;
+            font-size: 13px;
+            color: var(--phy-muted);
+        }
+
+        .phy-code {
+            font-family: Consolas, Monaco, monospace;
+            font-size: 12.5px;
+            background: var(--phy-ink);
+            color: var(--phy-gold);
+            border-radius: 10px;
+            padding: 12px 14px;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        /* ===== 实验台 ===== */
+        .phy-lab {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 0 28px 48px;
+        }
+
+        .phy-lab-card {
+            background: var(--phy-white);
+            border: 1px solid var(--phy-line);
+            border-radius: 20px;
+            box-shadow: var(--phy-shadow);
+            padding: 30px 32px;
+        }
+
+        .phy-lab-head {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 22px;
+        }
+
+        .phy-lab-title {
+            margin: 0;
+            font-size: 22px;
+        }
+
+        .phy-lab-title em {
+            font-style: italic;
+            color: var(--phy-coral);
+            font-size: 14px;
+            margin-left: 10px;
+            letter-spacing: .14em;
+        }
+
+        .phy-controls {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+            flex-wrap: wrap;
+            font-family: "Microsoft YaHei", sans-serif;
+            font-size: 13px;
+            color: var(--phy-muted);
+        }
+
+        .phy-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .phy-range {
+            accent-color: var(--phy-teal);
+            width: 160px;
+        }
+
+        .phy-search {
+            font-family: "Microsoft YaHei", sans-serif;
+            font-size: 13px;
+            color: var(--phy-ink);
+            background: var(--phy-paper);
+            border: 1px solid var(--phy-line);
+            border-radius: 999px;
+            padding: 8px 16px;
+            width: 200px;
+            outline: none;
+            transition: border-color .2s ease;
+        }
+
+        .phy-search:focus { border-color: var(--phy-teal); }
+
+        .phy-readout {
+            font-family: Consolas, Monaco, monospace;
+            font-size: 12px;
+            color: var(--phy-ink);
+            background: var(--phy-paper);
+            border: 1px solid var(--phy-line);
+            border-radius: 6px;
+            padding: 2px 8px;
+            min-width: 52px;
+            text-align: center;
+        }
+
+        .phy-swatches { display: flex; gap: 8px; }
+
+        .phy-swatch {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            cursor: pointer;
+            padding: 0;
+            transition: .2s ease;
+        }
+
+        .phy-swatch:hover { transform: scale(1.15); }
+
+        .phy-swatch.is-active { border-color: var(--phy-ink); }
+
+        .phy-preview {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: clamp(18px, 4vw, 44px);
+            padding: 34px 10px;
+            border: 1px dashed var(--phy-line);
+            border-radius: 14px;
+            background:
+                radial-gradient(circle at 50% 0%, rgba(44, 140, 136, .1), transparent 60%),
+                var(--phy-paper);
+        }
+
+        .phy-preview svg {
+            width: var(--phy-icon-size);
+            height: var(--phy-icon-size);
+            stroke-width: var(--phy-stroke);
+            color: var(--phy-lab-color);
+            transition: color .18s ease;
+        }
+
+        /* ===== 图标画廊 ===== */
+        .phy-gallery {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 0 28px 64px;
+        }
+
+        .phy-group-head {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin: 0 0 18px;
+        }
+
+        .phy-group-title {
+            margin: 0;
+            font-size: 24px;
+            font-weight: 400;
+        }
+
+        .phy-group-title em {
+            font-style: italic;
+            color: var(--phy-teal);
+            font-size: 14px;
+            margin-left: 10px;
+            letter-spacing: .12em;
+        }
+
+        .phy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 14px;
+        }
+
+        .phy-card {
+            background: var(--phy-white);
+            border: 1px solid var(--phy-line);
+            border-radius: 14px;
+            padding: 22px 12px 16px;
+            text-align: center;
+            transition: .25s ease;
+        }
+
+        .phy-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--phy-shadow);
+            border-color: transparent;
+        }
+
+        .phy-card svg {
+            width: 30px;
+            height: 30px;
+            color: var(--phy-ink);
+            transition: color .25s ease;
+        }
+
+        .phy-card:hover svg { color: var(--phy-teal); }
+
+        .phy-name {
+            display: block;
+            margin-top: 10px;
+            font-family: Consolas, Monaco, monospace;
+            font-size: 11.5px;
+            color: var(--phy-muted);
+        }
+
+        /* ===== 页脚 ===== */
+        .phy-footer {
+            border-top: 1px solid var(--phy-line);
+            padding: 26px 28px 40px;
+            text-align: center;
+            font-family: "Microsoft YaHei", sans-serif;
+            font-size: 12.5px;
+            color: var(--phy-muted);
+            letter-spacing: .08em;
+        }
+
+        .phy-footer b { color: var(--phy-teal); font-weight: 400; }
+
+        @media (max-width: 860px) {
+            .phy-hero { grid-template-columns: 1fr; gap: 32px; }
+        }
+    </style>
+</head>
+<body>
+    <header class="phy-topbar">
+        <a class="phy-brand" href="index.html">
+            <span class="phy-mark"></span>
+            <span class="phy-brand-text">线稿研究所 <em>VECTOR STUDIO</em></span>
+        </a>
+        <nav>
+            <a class="phy-home-link" href="index.html">返回首页 index.html <span aria-hidden="true">→</span></a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="phy-hero">
+            <div>
+                <p class="phy-kicker">CLASS PRACTICE · NO.02 · SVG ICON</p>
+                <h1 class="phy-title">矢量线稿<span>Inline SVG · Lucide</span></h1>
+                <p class="phy-lede">以数学路径描画图形。脚本扫描 data-lucide 属性，把图标作为内联 SVG 注入页面 —— 描边跟随 currentColor，线宽、尺寸皆可用 CSS 随心调控。</p>
+            </div>
+            <aside class="phy-note-card">
+                <h2 class="phy-note-title"><i data-lucide="pen-tool" aria-hidden="true"></i>SVG 图标的原理</h2>
+                <p class="phy-note-text">lucide.min.js 已下载到本地 cdn 目录；一个属性即可声明图标，由脚本内联注入真正的 SVG 节点：</p>
+                <div class="phy-code">&lt;i data-lucide="heart"&gt;&lt;/i&gt;</div>
+            </aside>
+        </section>
+
+        <section class="phy-lab">
+            <div class="phy-lab-card">
+                <div class="phy-lab-head">
+                    <h2 class="phy-lab-title">实验台<em>PLAYGROUND</em></h2>
+                    <div class="phy-controls">
+                        <label class="phy-control">描边
+                            <input class="phy-range" id="phy_strokeRange" type="range" min="1" max="3" step="0.25" value="2">
+                            <span class="phy-readout" id="phy_strokeRead">2</span>
+                        </label>
+                        <label class="phy-control">字号
+                            <input class="phy-range" id="phy_sizeRange" type="range" min="18" max="80" value="40">
+                            <span class="phy-readout" id="phy_sizeRead">40px</span>
+                        </label>
+                        <span class="phy-control">颜色
+                            <span class="phy-swatches" id="phy_swatches">
+                                <button class="phy-swatch is-active" type="button" data-phy-color="#17202a" style="background:#17202a" aria-label="墨色"></button>
+                                <button class="phy-swatch" type="button" data-phy-color="#ef6f61" style="background:#ef6f61" aria-label="珊瑚"></button>
+                                <button class="phy-swatch" type="button" data-phy-color="#f5c451" style="background:#f5c451" aria-label="鎏金"></button>
+                                <button class="phy-swatch" type="button" data-phy-color="#2c8c88" style="background:#2c8c88" aria-label="青碧"></button>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                <div class="phy-preview" id="phy_preview">
+                    <i data-lucide="heart"></i>
+                    <i data-lucide="palette"></i>
+                    <i data-lucide="feather"></i>
+                    <i data-lucide="compass"></i>
+                    <i data-lucide="gem"></i>
+                </div>
+            </div>
+        </section>
+
+        <section class="phy-gallery">
+            <div class="phy-group-head">
+                <h2 class="phy-group-title">线稿画廊<em>LUCIDE GALLERY · 30 ICONS</em></h2>
+                <label class="phy-control">搜索
+                    <input class="phy-search" id="phy_search" type="search" placeholder="输入图标名，如 heart…" autocomplete="off">
+                </label>
+            </div>
+            <div class="phy-grid" id="phy_grid">
+                <div class="phy-card" data-phy-name="heart"><i data-lucide="heart"></i><span class="phy-name">heart</span></div>
+                <div class="phy-card" data-phy-name="star"><i data-lucide="star"></i><span class="phy-name">star</span></div>
+                <div class="phy-card" data-phy-name="camera"><i data-lucide="camera"></i><span class="phy-name">camera</span></div>
+                <div class="phy-card" data-phy-name="music"><i data-lucide="music"></i><span class="phy-name">music</span></div>
+                <div class="phy-card" data-phy-name="zap"><i data-lucide="zap"></i><span class="phy-name">zap</span></div>
+                <div class="phy-card" data-phy-name="flame"><i data-lucide="flame"></i><span class="phy-name">flame</span></div>
+                <div class="phy-card" data-phy-name="palette"><i data-lucide="palette"></i><span class="phy-name">palette</span></div>
+                <div class="phy-card" data-phy-name="coffee"><i data-lucide="coffee"></i><span class="phy-name">coffee</span></div>
+                <div class="phy-card" data-phy-name="leaf"><i data-lucide="leaf"></i><span class="phy-name">leaf</span></div>
+                <div class="phy-card" data-phy-name="moon"><i data-lucide="moon"></i><span class="phy-name">moon</span></div>
+                <div class="phy-card" data-phy-name="sun"><i data-lucide="sun"></i><span class="phy-name">sun</span></div>
+                <div class="phy-card" data-phy-name="gamepad-2"><i data-lucide="gamepad-2"></i><span class="phy-name">gamepad-2</span></div>
+                <div class="phy-card" data-phy-name="feather"><i data-lucide="feather"></i><span class="phy-name">feather</span></div>
+                <div class="phy-card" data-phy-name="gem"><i data-lucide="gem"></i><span class="phy-name">gem</span></div>
+                <div class="phy-card" data-phy-name="mountain"><i data-lucide="mountain"></i><span class="phy-name">mountain</span></div>
+                <div class="phy-card" data-phy-name="compass"><i data-lucide="compass"></i><span class="phy-name">compass</span></div>
+                <div class="phy-card" data-phy-name="bell"><i data-lucide="bell"></i><span class="phy-name">bell</span></div>
+                <div class="phy-card" data-phy-name="mail"><i data-lucide="mail"></i><span class="phy-name">mail</span></div>
+                <div class="phy-card" data-phy-name="clock"><i data-lucide="clock"></i><span class="phy-name">clock</span></div>
+                <div class="phy-card" data-phy-name="image"><i data-lucide="image"></i><span class="phy-name">image</span></div>
+                <div class="phy-card" data-phy-name="smile"><i data-lucide="smile"></i><span class="phy-name">smile</span></div>
+                <div class="phy-card" data-phy-name="home"><i data-lucide="home"></i><span class="phy-name">home</span></div>
+                <div class="phy-card" data-phy-name="search"><i data-lucide="search"></i><span class="phy-name">search</span></div>
+                <div class="phy-card" data-phy-name="settings"><i data-lucide="settings"></i><span class="phy-name">settings</span></div>
+                <div class="phy-card" data-phy-name="cloud"><i data-lucide="cloud"></i><span class="phy-name">cloud</span></div>
+                <div class="phy-card" data-phy-name="wifi"><i data-lucide="wifi"></i><span class="phy-name">wifi</span></div>
+                <div class="phy-card" data-phy-name="phone"><i data-lucide="phone"></i><span class="phy-name">phone</span></div>
+                <div class="phy-card" data-phy-name="map-pin"><i data-lucide="map-pin"></i><span class="phy-name">map-pin</span></div>
+                <div class="phy-card" data-phy-name="calendar"><i data-lucide="calendar"></i><span class="phy-name">calendar</span></div>
+                <div class="phy-card" data-phy-name="download"><i data-lucide="download"></i><span class="phy-name">download</span></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="phy-footer">
+        潘贺杨 · <b>24002120316</b> · 《高级网页设计》课堂实践 · 矢量图标 Lucide（本地化 CDN · SVG 注入）
+    </footer>
+
+    <script src="cdn/lucide/lucide.min.js"></script>
+    <script>
+        lucide.createIcons();
+
+        var phy_strokeRange = document.getElementById('phy_strokeRange');
+        var phy_strokeRead = document.getElementById('phy_strokeRead');
+        phy_strokeRange.addEventListener('input', function () {
+            document.documentElement.style.setProperty('--phy-stroke', phy_strokeRange.value);
+            phy_strokeRead.textContent = phy_strokeRange.value;
+        });
+
+        var phy_sizeRange = document.getElementById('phy_sizeRange');
+        var phy_sizeRead = document.getElementById('phy_sizeRead');
+        phy_sizeRange.addEventListener('input', function () {
+            document.documentElement.style.setProperty('--phy-icon-size', phy_sizeRange.value + 'px');
+            phy_sizeRead.textContent = phy_sizeRange.value + 'px';
+        });
+
+        var phy_swatches = document.getElementById('phy_swatches');
+        phy_swatches.addEventListener('click', function (phy_event) {
+            var phy_btn = phy_event.target.closest('.phy-swatch');
+            if (!phy_btn) { return; }
+            document.querySelectorAll('.phy-swatch').forEach(function (phy_item) {
+                phy_item.classList.remove('is-active');
+            });
+            phy_btn.classList.add('is-active');
+            document.documentElement.style.setProperty('--phy-lab-color', phy_btn.dataset.phyColor);
+        });
+
+        var phy_search = document.getElementById('phy_search');
+        var phy_cards = document.querySelectorAll('#phy_grid .phy-card');
+        phy_search.addEventListener('input', function () {
+            var phy_keyword = phy_search.value.trim().toLowerCase();
+            phy_cards.forEach(function (phy_card) {
+                var phy_hit = phy_card.dataset.phyName.indexOf(phy_keyword) !== -1;
+                phy_card.style.display = phy_hit ? '' : 'none';
+            });
+        });
+    </script>
+</body>
+</html>

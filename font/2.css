@@ -1,0 +1,136 @@
+/*全局css*/
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+a{
+    text-decoration:none;
+}
+ul,ol{
+    list-style:none;
+}
+  .page-header{
+    background:linear-gradient(to right,#4a90d9,#7bdff2);
+    color:#dfeff7;
+    padding:20px 40px;
+    text-align:center;
+    margin-bottom:30px;
+}
+.page-header h2{
+    font-size:36px;
+}
+.page-main{
+    max-width: 960px;
+    margin:0 auto;
+    padding:20px;
+}
+.page-main .case{
+    background:#22334a;
+    padding:20px;
+    margin-bottom:30px;
+    border-radius:10px;
+    border:1px solid #4a90d9;
+}
+.case-title{
+    font-size:24px;
+    color:#7bdff2;
+    border-bottom:1px solid #eee;
+}
+.nav-bar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:10px 20px;
+    background:#22334a;
+    color:#dfeff7;
+    font-size:18px;
+    font-weight:bold;
+    border-radius:10px;
+}
+.logo{
+    font-size:24px;
+    font-weight:bold;
+    color:#7bdff2;
+    margin-right:20px;
+}
+.nav-list{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap: 20px;
+}
+.nav-list a{
+    color:#dfeff7;
+    font-weight: bold;
+    font-size:18px;
+    padding:10px 20px;
+    border-radius:10px;
+}
+.nav-list a:hover{
+    background:rgba(123,223,242,0.3);
+}
+.three-columns{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    background:#22334a;
+    padding:20px;
+    border-radius:10px;
+}
+.three-columns .column{
+    background:#4a90d9;
+    color:#fff;
+    padding:20px;
+    flex:1;
+    text-align:center;
+    border-radius:10px;
+}
+.three-columns .column:nth-child(2){
+    background:#3cb371;
+}
+.three-columns .column:nth-child(3){
+    background:#9b59b6;
+}
+.card-grid{
+    display:flex;
+    flex-wrap: wrap;
+    gap:20px;
+}
+.card-grid .card{
+    background:#4a90d9;
+    color:#fff;
+    padding:20px;
+    flex:1 1 250px;
+    text-align:center;
+    border-radius:10px;
+    transition:all 0.3s ease-in-out;
+}
+.card-grid .card:hover{
+    transform:scale(1.1) translateY(-10px);
+    box-shadow:0 0 10px rgba(123,223,242,0.6);
+}
+.sidebar{
+    display: flex;
+    flex-wrap: nowrap;
+    gap:20px;
+    background:#22334a;
+    padding:20px;
+    text-align:center;
+    border-radius:10px;
+}
+.sidebar aside{
+    background:#9b59b6;
+    color:#fff;
+    padding:20px;
+    flex:0 0 200px;
+    border-radius:10px;
+}
+.sidebar .main-content{
+    background:#3cb371;
+    color:#fff;
+    padding:20px;
+    flex:1;
+    border-radius:10px;
+}
