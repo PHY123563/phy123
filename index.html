@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>股票行情Tab选项卡</title>
-    <!-- 作者：潘赫阳 panheyang -->
+    <!-- 作者：潘贺杨 panheyang -->
     <style>
-        /* ===== phy_ 全局重置 ===== 作者：潘赫阳 */
+        /* ===== phy_ 全局重置 ===== 作者：潘贺杨 */
         * {
             margin: 0;
             padding: 0;
@@ -19,7 +19,7 @@
             padding: 40px 20px;
         }
 
-        /* ===== phy_ Tab容器 ===== 作者：潘赫阳 */
+        /* ===== phy_ Tab容器 ===== 作者：潘贺杨 */
         .phy_tab_container {
             max-width: 600px;
             margin: 0 auto;
@@ -29,7 +29,7 @@
             overflow: hidden;
         }
 
-        /* ===== phy_ Tab导航栏 ===== 作者：潘赫阳 */
+        /* ===== phy_ Tab导航栏 ===== 作者：潘贺杨 */
         .phy_tab_nav {
             display: flex;
             background: #f7f7f7;
@@ -52,14 +52,14 @@
             background: #f0f0f0;
         }
 
-        /* 选中态：酒红色背景白色文字 —— 作者：潘赫阳 */
+        /* 选中态：酒红色背景白色文字 —— 作者：潘贺杨 */
         .phy_tab_item.phy_active {
             background: #c9302c;
             color: #fff;
             font-weight: 600;
         }
 
-        /* ===== phy_ Tab内容面板 ===== 作者：潘赫阳 */
+        /* ===== phy_ Tab内容面板 ===== 作者：潘贺杨 */
         .phy_tab_panel {
             display: none;
         }
@@ -68,7 +68,7 @@
             display: block;
         }
 
-        /* ===== phy_ 股票表格 ===== 作者：潘赫阳 */
+        /* ===== phy_ 股票表格 ===== 作者：潘贺杨 */
         .phy_stock_table {
             width: 100%;
             border-collapse: collapse;
@@ -94,26 +94,26 @@
             border-bottom: none;
         }
 
-        /* 排名列：红色 —— 作者：潘赫阳 */
+        /* 排名列：红色 —— 作者：潘贺杨 */
         .phy_stock_table tbody td.phy_rank_col {
             width: 40px;
             text-align: center;
             color: #e60012;
         }
 
-        /* 涨：鲜艳正红 —— 作者：潘赫阳 */
+        /* 涨：鲜艳正红 —— 作者：潘贺杨 */
         .phy_stock_table tbody td.phy_up {
             color: #e60012;
         }
 
-        /* 跌：标准股票绿 —— 作者：潘赫阳 */
+        /* 跌：标准股票绿 —— 作者：潘贺杨 */
         .phy_stock_table tbody td.phy_down {
             color: #00a000;
         }
     </style>
 </head>
 <body>
-    <!-- phy_ Tab容器 作者：潘赫阳 -->
+    <!-- phy_ Tab容器 作者：潘贺杨 -->
     <div class="phy_tab_container" data-phy-tab-group="stock">
         <!-- Tab导航 -->
         <div class="phy_tab_nav">
@@ -123,7 +123,7 @@
             <div class="phy_tab_item" data-phy-tab="shendie">深跌</div>
         </div>
 
-        <!-- Tab内容：沪涨（默认） 作者：潘赫阳 -->
+        <!-- Tab内容：沪涨（默认） 作者：潘贺杨 -->
         <div class="phy_tab_panel phy_active" data-phy-panel="huzhang">
             <table class="phy_stock_table">
                 <thead>
@@ -139,7 +139,7 @@
             </table>
         </div>
 
-        <!-- Tab内容：沪跌 作者：潘赫阳 -->
+        <!-- Tab内容：沪跌 作者：潘贺杨 -->
         <div class="phy_tab_panel" data-phy-panel="hudie">
             <table class="phy_stock_table">
                 <thead>
@@ -155,7 +155,7 @@
             </table>
         </div>
 
-        <!-- Tab内容：深涨 作者：潘赫阳 -->
+        <!-- Tab内容：深涨 作者：潘贺杨 -->
         <div class="phy_tab_panel" data-phy-panel="shenzhang">
             <table class="phy_stock_table">
                 <thead>
@@ -171,7 +171,7 @@
             </table>
         </div>
 
-        <!-- Tab内容：深跌 作者：潘赫阳 -->
+        <!-- Tab内容：深跌 作者：潘贺杨 -->
         <div class="phy_tab_panel" data-phy-panel="shendie">
             <table class="phy_stock_table">
                 <thead>
@@ -188,7 +188,7 @@
         </div>
     </div>
 
-    <!-- 外部JS：可复用Tab组件 作者：潘赫阳 -->
+    <!-- 外部JS：可复用Tab组件 作者：潘贺杨 -->
     <script src="js/tab.js"></script>
 </body>
 </html>

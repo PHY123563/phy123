@@ -1,6 +1,6 @@
 /**
  * phy_Tab —— 可复用 Tab 选项卡组件
- * 作者：潘赫阳 panheyang
+ * 作者：潘贺杨 panheyang
  *
  * 用法：
  *   容器：  data-phy-tab-group="任意名称"
@@ -15,7 +15,7 @@
     /**
      * 初始化单个 tab 组
      * @param {HTMLElement} phy_container - 具有 data-phy-tab-group 的容器元素
-     * 作者：潘赫阳
+     * 作者：潘贺杨
      */
     function phy_initTabGroup(phy_container) {
         // 找到当前容器内的所有 tab 按钮和内容面板
@@ -26,7 +26,7 @@
 
         /**
          * 清除所有选项卡的选中状态
-         * 作者：潘赫阳
+         * 作者：潘贺杨
          */
         function phy_clearAllActive() {
             phy_navItems.forEach(function (phy_item) {
@@ -40,7 +40,7 @@
         /**
          * 设置当前选项卡为选中状态
          * @param {string} phy_target - 目标 tab 的 data-phy-tab 值
-         * 作者：潘赫阳
+         * 作者：潘贺杨
          */
         function phy_setActive(phy_target) {
             // 先清除所有选项卡的选中状态
@@ -71,7 +71,7 @@
 
     /**
      * 扫描页面中所有 tab 组并逐一初始化
-     * 作者：潘赫阳
+     * 作者：潘贺杨
      */
     function phy_initAllTabs() {
         var phy_groups = document.querySelectorAll('[data-phy-tab-group]');
@@ -88,7 +88,7 @@
     }
 
     // 暴露到全局，方便外部手动调用
-    // 作者：潘赫阳
+    // 作者：潘贺杨
     window.phy_Tab = {
         init: phy_initAllTabs,
         initGroup: phy_initTabGroup
