@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>股票行情Tab选项卡</title>
+    <!-- 作者：潘贺杨 panheyang -->
+    <style>
+        /* ===== phy_ 全局重置 ===== 作者：潘贺杨 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Tahoma, "SimSun", "宋体", "Microsoft YaHei", sans-serif;
+            font-size: 12px;
+            font-weight: normal;
+            background: #fff;
+            padding: 0;
+            margin: 10px;
+        }
+
+        /* ===== phy_ Tab容器 方角 ===== 作者：潘贺杨 */
+        .phy_tab_container {
+            width: 320px;
+            margin: 0;
+            background: #fff;
+            border: 1px solid #dcdcdc;
+        }
+
+        /* ===== phy_ Tab导航栏 ===== 作者：潘贺杨 */
+        .phy_tab_nav {
+            display: flex;
+            background: #fff;
+            border-bottom: 1px solid #dcdcdc;
+        }
+
+        .phy_tab_item {
+            flex: 1;
+            padding: 6px 0;
+            text-align: center;
+            cursor: pointer;
+            font-size: 12px;
+            color: #1e5ec8;
+            user-select: none;
+            transition: color 0.15s;
+            background: transparent;
+            border-bottom: 2px solid transparent;
+            margin-bottom: -1px;
+        }
+
+        /* 选中态：黑字加粗 + 底部下划线 —— 作者：潘贺杨 */
+        .phy_tab_item.phy_active {
+            background: #fff;
+            color: #000;
+            font-weight: bold;
+            border-bottom-color: #1e5ec8;
+        }
+
+        /* ===== phy_ Tab内容面板 ===== 作者：潘贺杨 */
+        .phy_tab_panel {
+            display: none;
+        }
+        .phy_tab_panel.phy_active {
+            display: block;
+        }
+
+        /* ===== phy_ 股票表格 ===== 作者：潘贺杨 */
+        .phy_stock_table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed;
+            font-size: 12px;
+        }
+
+        /* 列宽按原图比例：现价 / 涨跌 / 涨幅三列等距，名称列占余量 */
+        .phy_stock_table col.phy_c_rank   { width: 21px; }
+        .phy_stock_table col.phy_c_name   { }
+        .phy_stock_table col.phy_c_price  { width: 74px; }
+        .phy_stock_table col.phy_c_change { width: 74px; }
+        .phy_stock_table col.phy_c_pct    { width: 64px; }
+
+        .phy_stock_table tbody td {
+            padding: 9px 6px;
+            border-bottom: 1px solid #ebebeb;
+            color: #000;
+            overflow: hidden;
+            white-space: nowrap;
+            line-height: 1.3;
+        }
+
+        .phy_stock_table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* 排名：紧跟名称，红色（与原图一致，序号与名称间隙很小）—— 作者：潘贺杨 */
+        .phy_stock_table tbody td.phy_rank_col {
+            text-align: left;
+            padding-left: 11px;
+            padding-right: 0;
+            color: #e60012;
+        }
+
+        /* 名称：左对齐 */
+        .phy_stock_table tbody td.phy_name_col {
+            text-align: left;
+        }
+
+        /* 现价：左对齐（原图数字列均左对齐） */
+        .phy_stock_table tbody td.phy_price_col {
+            text-align: left;
+        }
+
+        /* 涨跌：左对齐 */
+        .phy_stock_table tbody td.phy_change_col {
+            text-align: left;
+        }
+
+        /* 涨跌幅：左对齐 */
+        .phy_stock_table tbody td.phy_pct_col {
+            text-align: left;
+        }
+
+        /* 涨：红色 —— 作者：潘贺杨 */
+        .phy_stock_table tbody td.phy_up {
+            color: #e60012;
+        }
+
+        /* 跌：绿色 —— 作者：潘贺杨 */
+        .phy_stock_table tbody td.phy_down {
+            color: #00a000;
+        }
+    </style>
+</head>
+<body>
+    <!-- phy_ Tab容器 作者：潘贺杨 -->
+    <div class="phy_tab_container" data-phy-tab-group="stock">
+        <!-- Tab导航 -->
+        <div class="phy_tab_nav">
+            <div class="phy_tab_item phy_active" data-phy-tab="huzhang">沪涨</div>
+            <div class="phy_tab_item" data-phy-tab="hudie">沪跌</div>
+            <div class="phy_tab_item" data-phy-tab="shenzhang">深涨</div>
+            <div class="phy_tab_item" data-phy-tab="shendie">深跌</div>
+        </div>
+
+        <!-- Tab内容：沪涨（默认） 作者：潘贺杨 -->
+        <div class="phy_tab_panel phy_active" data-phy-panel="huzhang">
+            <table class="phy_stock_table">
+                <colgroup>
+                    <col class="phy_c_rank">
+                    <col class="phy_c_name">
+                    <col class="phy_c_price">
+                    <col class="phy_c_change">
+                    <col class="phy_c_pct">
+                </colgroup>
+                <tbody>
+                    <tr><td class="phy_rank_col">1.</td><td class="phy_name_col">N浙能</td><td class="phy_price_col">8.88</td><td class="phy_change_col phy_up">+3.35</td><td class="phy_pct_col phy_up">60.58%</td></tr>
+                    <tr><td class="phy_rank_col">2.</td><td class="phy_name_col">天津松江</td><td class="phy_price_col">8.16</td><td class="phy_change_col phy_up">+0.65</td><td class="phy_pct_col phy_up">8.66%</td></tr>
+                    <tr><td class="phy_rank_col">3.</td><td class="phy_name_col">金瑞科技</td><td class="phy_price_col">8.79</td><td class="phy_change_col phy_up">+0.42</td><td class="phy_pct_col phy_up">5.02%</td></tr>
+                    <tr><td class="phy_rank_col">4.</td><td class="phy_name_col">宏发股份</td><td class="phy_price_col">17.22</td><td class="phy_change_col phy_up">+0.82</td><td class="phy_pct_col phy_up">5.00%</td></tr>
+                    <tr><td class="phy_rank_col">5.</td><td class="phy_name_col">杭齿前进</td><td class="phy_price_col">7.23</td><td class="phy_change_col phy_up">+0.34</td><td class="phy_pct_col phy_up">4.93%</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Tab内容：沪跌 作者：潘贺杨 -->
+        <div class="phy_tab_panel" data-phy-panel="hudie">
+            <table class="phy_stock_table">
+                <colgroup>
+                    <col class="phy_c_rank">
+                    <col class="phy_c_name">
+                    <col class="phy_c_price">
+                    <col class="phy_c_change">
+                    <col class="phy_c_pct">
+                </colgroup>
+                <tbody>
+                    <tr><td class="phy_rank_col">1.</td><td class="phy_name_col">华电国际</td><td class="phy_price_col">3.42</td><td class="phy_change_col phy_down">-0.38</td><td class="phy_pct_col phy_down">-10.00%</td></tr>
+                    <tr><td class="phy_rank_col">2.</td><td class="phy_name_col">光大证券</td><td class="phy_price_col">8.55</td><td class="phy_change_col phy_down">-0.85</td><td class="phy_pct_col phy_down">-9.04%</td></tr>
+                    <tr><td class="phy_rank_col">3.</td><td class="phy_name_col">中国太保</td><td class="phy_price_col">28.10</td><td class="phy_change_col phy_down">-2.30</td><td class="phy_pct_col phy_down">-7.57%</td></tr>
+                    <tr><td class="phy_rank_col">4.</td><td class="phy_name_col">中煤能源</td><td class="phy_price_col">9.85</td><td class="phy_change_col phy_down">-0.75</td><td class="phy_pct_col phy_down">-7.08%</td></tr>
+                    <tr><td class="phy_rank_col">5.</td><td class="phy_name_col">东方航空</td><td class="phy_price_col">4.28</td><td class="phy_change_col phy_down">-0.32</td><td class="phy_pct_col phy_down">-6.96%</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Tab内容：深涨 作者：潘贺杨 -->
+        <div class="phy_tab_panel" data-phy-panel="shenzhang">
+            <table class="phy_stock_table">
+                <colgroup>
+                    <col class="phy_c_rank">
+                    <col class="phy_c_name">
+                    <col class="phy_c_price">
+                    <col class="phy_c_change">
+                    <col class="phy_c_pct">
+                </colgroup>
+                <tbody>
+                    <tr><td class="phy_rank_col">1.</td><td class="phy_name_col">天顺风能</td><td class="phy_price_col">10.52</td><td class="phy_change_col phy_up">+0.96</td><td class="phy_pct_col phy_up">10.04%</td></tr>
+                    <tr><td class="phy_rank_col">2.</td><td class="phy_name_col">兴源过滤</td><td class="phy_price_col">16.02</td><td class="phy_change_col phy_up">+1.46</td><td class="phy_pct_col phy_up">10.03%</td></tr>
+                    <tr><td class="phy_rank_col">3.</td><td class="phy_name_col">北京君正</td><td class="phy_price_col">36.92</td><td class="phy_change_col phy_up">+3.36</td><td class="phy_pct_col phy_up">10.01%</td></tr>
+                    <tr><td class="phy_rank_col">4.</td><td class="phy_name_col">美盛文化</td><td class="phy_price_col">32.87</td><td class="phy_change_col phy_up">+2.99</td><td class="phy_pct_col phy_up">10.01%</td></tr>
+                    <tr><td class="phy_rank_col">5.</td><td class="phy_name_col">骅威股份</td><td class="phy_price_col">15.16</td><td class="phy_change_col phy_up">+1.38</td><td class="phy_pct_col phy_up">10.01%</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Tab内容：深跌 作者：潘贺杨 -->
+        <div class="phy_tab_panel" data-phy-panel="shendie">
+            <table class="phy_stock_table">
+                <colgroup>
+                    <col class="phy_c_rank">
+                    <col class="phy_c_name">
+                    <col class="phy_c_price">
+                    <col class="phy_c_change">
+                    <col class="phy_c_pct">
+                </colgroup>
+                <tbody>
+                    <tr><td class="phy_rank_col">1.</td><td class="phy_name_col">中信国安</td><td class="phy_price_col">3.87</td><td class="phy_change_col phy_down">-0.43</td><td class="phy_pct_col phy_down">-10.07%</td></tr>
+                    <tr><td class="phy_rank_col">2.</td><td class="phy_name_col">长安汽车</td><td class="phy_price_col">12.30</td><td class="phy_change_col phy_down">-1.25</td><td class="phy_pct_col phy_down">-9.26%</td></tr>
+                    <tr><td class="phy_rank_col">3.</td><td class="phy_name_col">格力电器</td><td class="phy_price_col">35.60</td><td class="phy_change_col phy_down">-3.20</td><td class="phy_pct_col phy_down">-8.21%</td></tr>
+                    <tr><td class="phy_rank_col">4.</td><td class="phy_name_col">五粮液</td><td class="phy_price_col">128.50</td><td class="phy_change_col phy_down">-11.50</td><td class="phy_pct_col phy_down">-8.21%</td></tr>
+                    <tr><td class="phy_rank_col">5.</td><td class="phy_name_col">云南白药</td><td class="phy_price_col">52.80</td><td class="phy_change_col phy_down">-4.20</td><td class="phy_pct_col phy_down">-7.37%</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- 外部JS：可复用Tab组件 作者：潘贺杨 -->
+    <script src="js/tab.js"></script>
+</body>
+</html>
