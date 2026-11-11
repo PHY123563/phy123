@@ -47,8 +47,19 @@
   /* 演示台 */
   .wy-demo{margin:18px 0 6px}
   .wy-demo .wy-demo-tag{display:inline-block;font-size:12.5px;color:#0f2b5b;background:#e8f0ff;border:1px solid #c7d8f8;border-radius:999px;padding:4px 14px;margin-bottom:12px}
+  /* overflow:visible 让 cube/creative 等 3D 效果旋转超出容器时不被裁掉 */
   .wy-swiper{width:100%;max-width:760px;margin:0 auto;border-radius:16px;overflow:visible!important}
-  .wy-swiper .swiper{border-radius:16px;box-shadow:0 10px 26px rgba(15,43,91,.18)}
+  /* 关键：perspective 视距让 3D 变换真正有"深度感"，否则 cube/creative 看起来扁平 */
+  .wy-swiper .swiper{
+    border-radius:16px;
+    box-shadow:0 10px 26px rgba(15,43,91,.18);
+    perspective: 1400px;
+  }
+  /* 兜底：cube/creative 效果需要 preserve-3d 保持 3D 变换链 */
+  .wy-swiper .swiper-cube .swiper-wrapper,
+  .wy-swiper .swiper-creative .swiper-wrapper { transform-style: preserve-3d; }
+  .wy-swiper .swiper-cube .swiper-slide,
+  .wy-swiper .swiper-creative .swiper-slide { transform-style: preserve-3d; backface-visibility: hidden; }
   .wy-swiper .swiper-slide{position:relative;height:290px}
   .wy-swiper .swiper-slide img{width:100%;height:100%;object-fit:cover;display:block}
   .wy-swiper .wy-cap{
@@ -81,6 +92,101 @@
   .wy-back a:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(15,43,91,.15)}
 
   footer{text-align:center;margin-top:34px;color:#9ca3af;font-size:13px;line-height:2}
+
+  /* ═══════════════════════════════════════
+     任务 5 · 超纲 API 挑战：发光光影展
+     新增：炫酷发光 + keyboard + mousewheel
+     ═══════════════════════════════════════ */
+  .wy-sec.glow-showcase {
+    background: linear-gradient(135deg,#05060a,#111827);
+    color:#fff;
+    border: none;
+    overflow: visible;
+  }
+  .wy-sec.glow-showcase::before {
+    background: linear-gradient(#fbbf24,#ef4444);
+  }
+  .wy-sec.glow-showcase h2 { color:#fbbf24; }
+  .wy-sec.glow-showcase small { color:#cbd5e1; }
+  .wy-sec.glow-showcase p.wy-txt { color:#cbd5e1; }
+
+  /* 发光轮播容器 */
+  .glow-stage { margin:20px 0 8px; }
+  .glow-swiper {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 20px;
+    overflow: visible;
+    position: relative;
+    max-width: 980px;
+    margin: 0 auto;
+  }
+  /* 外发光边框（伪元素 + 呼吸动画） */
+  .glow-swiper::before {
+    content:""; position:absolute; inset:-4px; border-radius:24px; z-index:-1;
+    background: linear-gradient(135deg,#fbbf24,#f97316,#ef4444,#a855f7);
+    box-shadow:
+      0 0 20px rgba(251,191,36,.55),
+      0 0 45px rgba(249,115,22,.40),
+      0 0 80px rgba(239,68,68,.25),
+      inset 0 0 30px rgba(255,255,255,.08);
+    animation: glowPulse 3.5s ease-in-out infinite;
+  }
+  @keyframes glowPulse {
+    0%,100% { opacity:.75; }
+    50%     { opacity:1;   }
+  }
+  .glow-swiper .swiper-slide {
+    border-radius:20px; overflow:hidden;
+    box-shadow: 0 10px 40px rgba(0,0,0,.6), 0 0 25px rgba(251,191,36,.25);
+  }
+  .glow-swiper .swiper-slide img {
+    width:100%; height:100%; object-fit:cover; display:block;
+    filter: drop-shadow(0 0 18px rgba(251,191,36,.35)) saturate(1.15) contrast(1.05);
+  }
+  .glow-swiper .glow-cap {
+    position:absolute; left:0; right:0; bottom:0;
+    padding: 48px 42px 24px;
+    background: linear-gradient(transparent, rgba(0,0,0,.85) 60%);
+    color:#fff;
+  }
+  .glow-swiper .glow-cap .tag {
+    display:inline-block; padding:5px 14px; border-radius:999px;
+    background: linear-gradient(135deg,#fbbf24,#f97316);
+    color:#1e1b0b; font-size:12px; font-weight:bold; letter-spacing:2px;
+    box-shadow: 0 0 12px rgba(251,191,36,.55); margin-bottom:10px;
+  }
+  .glow-swiper .glow-cap h3 { font-size:28px; letter-spacing:2px; margin-bottom:6px; text-shadow:0 2px 14px rgba(0,0,0,.7); }
+  .glow-swiper .glow-cap p { font-size:13.5px; color:#cbd5e1; line-height:1.8; max-width:640px; }
+
+  /* 分页器发光配色 */
+  .glow-swiper .swiper-pagination-bullet { width:10px; height:10px; background:rgba(255,255,255,.35)!important; opacity:1; }
+  .glow-swiper .swiper-pagination-bullet-active {
+    width:28px; border-radius:6px;
+    background: linear-gradient(90deg,#fbbf24,#ef4444)!important;
+    box-shadow: 0 0 12px rgba(251,191,36,.85);
+  }
+  /* 导航箭头 */
+  .glow-swiper .swiper-button-next,
+  .glow-swiper .swiper-button-prev {
+    width:52px; height:52px; border-radius:50%;
+    background:rgba(0,0,0,.55); color:#fbbf24;
+    --swiper-navigation-size:22px;
+    backdrop-filter:blur(6px); box-shadow:0 0 14px rgba(251,191,36,.45);
+    transition:all .25s;
+  }
+  .glow-swiper .swiper-button-next:hover,
+  .glow-swiper .swiper-button-prev:hover {
+    background:#fbbf24; color:#1e1b0b;
+    box-shadow:0 0 28px rgba(251,191,36,.9); transform:scale(1.08);
+  }
+  /* 键盘提示 */
+  .kb-hint { margin-top:18px; display:flex; gap:10px; flex-wrap:wrap; justify-content:center; font-size:12.5px; color:#cbd5e1; }
+  .kb-hint kbd {
+    background:#1e293b; border:1px solid #334155; border-bottom-width:2px;
+    border-radius:5px; padding:3px 9px; font-family:Consolas,monospace;
+    color:#fbbf24; box-shadow:0 2px 6px rgba(0,0,0,.4);
+  }
 </style>
 </head>
 <body>
@@ -194,14 +300,15 @@
   <div class="wy-sec">
     <div class="wy-sec-head">
       <span class="wy-no">4</span>
-      <h2>六种效果随心换<small>effect 参数 + 进阶：按钮实时切换</small></h2>
+      <h2>效果实验台 + 综合创作<small>6 种内置 effect + creative 自定义皮影 + 第 6 件展品</small></h2>
     </div>
-    <p class="wy-txt">改一个 <code>effect</code> 参数，轮播立刻换一种"性格"：slide / fade / cube / coverflow / flip / cards。上面的 6 个按钮已经绑好了点击事件（读取 <code>btn.dataset.fx</code>），JS 还需要你补两段。</p>
+    <p class="wy-txt">改一个 <code>effect</code> 参数，轮播立刻换一种"性格"：slide / fade / cube / coverflow / flip / cards（共 6 种内置），再加上第 7 种 <b>creative 自定义皮影</b>（课堂没讲，AI 协作自学）。下面 7 个按钮已经绑好了点击事件。</p>
     <div class="wy-req">
-      <h3>✍️ 任务 4 要求</h3>
-      <p><b>基础分</b>：初始化 <code>#wySw4</code>，实现循环 + 自动播放（3.2 秒）+ 圆点分页器（#wyPag4），初始效果为 <code>'slide'</code>，动画时长 800 毫秒。</p>
-      <p><b>进阶分</b>：补全按钮点击事件中的 TODO——实现点击按钮<b>切换效果</b>。提示：Swiper 动态换 effect 不能只改参数，需要<b>先销毁旧实例再重建</b>（destroy + new）。</p>
-      <span class="wy-star">⭐ 验证标准：基础分——轮播自动翻页；进阶分——点 cube 按钮变 3D 立方体、点 fade 变淡入淡出</span>
+      <h3>✍️ 任务 4 要求（基础分 + 进阶分 + 超纲加分）</h3>
+      <p><b>① 基础分</b>：初始化 <code>#wySw4</code>，循环 + 3.2 秒自动播放 + 圆点分页器（#wyPag4），初始 effect 为 <code>'slide'</code>，speed 800ms。</p>
+      <p><b>② 任务二 · creative 仿写</b>：新增第 7 个按钮「creative 皮影」，效果为 <b>上一张缩小左移带角度退场 + 下一张放大右移进场</b>（像电影选片墙）。使用 <code>creativeEffect.prev</code> / <code>creativeEffect.next</code> 分别控制前后 transform。</p>
+      <p><b>③ 任务三 · 综合创作</b>：新增第 6 件展品 <b>魔都号</b>（2024 年 1 月首航的国产大型邮轮），图片 <code>swiper-imgs/modu.jpg</code>；再加一个<b>课堂没讲过</b>的 Swiper 能力：本页选 <b>keyboard 键盘控制</b>（← → 方向键翻页）。</p>
+      <span class="wy-star">⭐ 验证：6 种基础 effect 实时切换 + creative 皮影像选片墙 + 共 6 张展品 + 按 ← → 能翻页</span>
     </div>
     <div class="wy-fx">
       <button class="wy-on" data-fx="slide">slide 平推（默认·稳重）</button>
@@ -210,22 +317,162 @@
       <button data-fx="coverflow">coverflow 画廊堆叠（沉浸）</button>
       <button data-fx="flip">flip 翻页（复古）</button>
       <button data-fx="cards">cards 卡片（俏皮）</button>
+      <button data-fx="creative">🎬 creative 皮影（选片墙）</button>
     </div>
     <div class="wy-demo">
-      <span class="wy-demo-tag">🎛️ 演示四 · 效果实验台（点按钮切换 effect）</span>
+      <span class="wy-demo-tag">🎛️ 演示四 · 效果实验台（7 种 effect · 按 ← → 翻页）</span>
       <div class="wy-swiper">
         <div class="swiper" id="wySw4">
           <div class="swiper-wrapper">
             <div class="swiper-slide"><img src="swiper-imgs/tiangong_1.jpg" alt="天宫空间站"><div class="wy-cap"><h3>天宫空间站</h3><p>试试上面的效果按钮</p></div></div>
-            <div class="swiper-slide"><img src="swiper-imgs/fuxing_1.jpg" alt="复兴号动车组"><div class="wy-cap"><h3>复兴号动车组</h3><p>同一组照片，六种讲述方式</p></div></div>
+            <div class="swiper-slide"><img src="swiper-imgs/fuxing_1.jpg" alt="复兴号动车组"><div class="wy-cap"><h3>复兴号动车组</h3><p>同一组照片，七种讲述方式</p></div></div>
             <div class="swiper-slide"><img src="swiper-imgs/c919_1.jpg" alt="C919大飞机"><div class="wy-cap"><h3>C919 大飞机</h3><p>企业官网爱用 fade</p></div></div>
             <div class="swiper-slide"><img src="swiper-imgs/fendouzhe_1.jpg" alt="奋斗者号"><div class="wy-cap"><h3>奋斗者号</h3><p>游戏网站爱用 cube</p></div></div>
             <div class="swiper-slide"><img src="swiper-imgs/fast_1.jpg" alt="中国天眼"><div class="wy-cap"><h3>中国天眼 FAST</h3><p>相册页面爱用 coverflow</p></div></div>
+            <div class="swiper-slide"><img src="swiper-imgs/modu.jpg" alt="魔都号邮轮"><div class="wy-cap"><h3>魔都号</h3><p>2024 年 1 月首航 · 国产大型邮轮</p></div></div>
           </div>
           <div class="swiper-pagination" id="wyPag4"></div>
         </div>
       </div>
     </div>
+  </div>
+
+  <!-- 任务 5 · 超纲 API 挑战：炫酷发光光影展 -->
+  <div class="wy-sec glow-showcase">
+    <div class="wy-sec-head">
+      <span class="wy-no" style="background:linear-gradient(135deg,#fbbf24,#ef4444)">5</span>
+      <h2>超纲 API 挑战 · 炫酷发光光影展<small>炫酷光效 + keyboard 键盘 + mousewheel 滚轮</small></h2>
+    </div>
+    <p class="wy-txt">最后一步——为光影展的明星展品 <b>爱达·魔都号</b> 打造一个带<b>炫酷发光效果</b>的专属展示台。同时挑战两个课堂没讲过的超纲 Swiper API：<code>keyboard</code>（键盘方向键）和 <code>mousewheel</code>（鼠标滚轮）。</p>
+    <div class="wy-req" style="background:#1e1b0b;border-color:#fbbf24;color:#fde68a">
+      <h3 style="color:#fbbf24">✍️ 任务 5 要求（发光 + 超纲 API）</h3>
+      <p><b>① 炫酷发光效果</b>：用 <code>box-shadow</code>（多层叠加外发光边框）+ <code>filter: drop-shadow</code>（图片本身发光）+ <code>@keyframes</code>（呼吸动画）实现三层叠加的霓虹发光。</p>
+      <p><b>② keyboard 键盘控制</b>：<code>keyboard.enabled: true</code>，按 ← → 切换。<span style="color:#fca5a5">swiper-bundle.min.js 已内置 Keyboard 模块，无需额外引入。</span></p>
+      <p><b>③ mousewheel 滚轮控制</b>：<code>mousewheel.enabled: true</code>，<code>forceToAxis: true</code>（强制横向翻页），<code>releaseOnEdges: true</code>（到边释放给页面）。</p>
+      <span class="wy-star" style="color:#fbbf24">⭐ 验证：外发光在呼吸闪烁 · 按 ← → 翻页 · 滚鼠标滚轮翻页</span>
+    </div>
+
+    <div class="glow-stage">
+      <span class="wy-demo-tag" style="background:#1e1b0b;border-color:#fbbf24;color:#fbbf24">✨ 演示五 · 爱达·魔都号发光专属展 · 按 ← → 或滚鼠标滚轮</span>
+      <div class="glow-swiper">
+        <div class="swiper" id="wySw5">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <img src="swiper-imgs/modu.jpg" alt="爱达·魔都号">
+              <div class="glow-cap">
+                <span class="tag">✨ 01 · 旗舰展品</span>
+                <h3>爱达 · 魔都号</h3>
+                <p>2024 年 1 月 1 日首航 · 首艘由中国自主设计建造的大型邮轮 · 总长 323.6 米 · 可搭载乘客 5246 人</p>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <img src="swiper-imgs/c919_1.jpg" alt="C919">
+              <div class="glow-cap">
+                <span class="tag">✨ 02 · 蓝天之翼</span>
+                <h3>C919 大飞机</h3>
+                <p>2023 年商业首航 · 中国首款自主研发的大型干线客机</p>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <img src="swiper-imgs/fuxing_1.jpg" alt="复兴号">
+              <div class="glow-cap">
+                <span class="tag">✨ 03 · 陆地航母</span>
+                <h3>复兴号动车组</h3>
+                <p>世界商业运营最高速 350 km/h · 中国标准</p>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <img src="swiper-imgs/fast_1.jpg" alt="FAST">
+              <div class="glow-cap">
+                <span class="tag">✨ 04 · 观天巨目</span>
+                <h3>中国天眼 FAST</h3>
+                <p>500 米口径 · 世界最大单口径射电望远镜</p>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <img src="swiper-imgs/tiangong_1.jpg" alt="天宫">
+              <div class="glow-cap">
+                <span class="tag">✨ 05 · 太空家园</span>
+                <h3>天宫空间站</h3>
+                <p>三舱结构 · 中国航天员的太空家园</p>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-pagination"></div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
+        </div>
+      </div>
+      <div class="kb-hint">
+        <span>按</span><kbd>←</kbd><kbd>→</kbd><span>切换</span>
+        <span style="margin-left:16px">滚动</span><kbd>鼠标滚轮</kbd><span>切换</span>
+        <span style="margin-left:16px">按</span><kbd>Home</kbd><kbd>End</kbd><span>跳首尾</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🧠 四轮 AI 协作提示词回顾（答辩时可以对照讲思路） -->
+  <div class="wy-sec" style="border-left:5px solid #a855f7">
+    <div class="wy-sec-head">
+      <span class="wy-no" style="background:linear-gradient(135deg,#7c3aed,#a855f7)">🧠</span>
+      <h2>四轮 AI 协作提示词回顾<small>从基础到超纲 · 完整学习路径</small></h2>
+    </div>
+    <p class="wy-txt">下面四轮是本页面从零到最终版的完整 AI 协作链路——每一轮都是"先写 → 跑起来 → 发现问题 → 修复 → 升级需求"的迭代闭环。<b>答辩时可以对照讲清楚：每一轮你给 AI 的原始需求、AI 产出后你发现了什么问题、AI 又是怎么解决的。</b></p>
+
+    <!-- 第一轮 -->
+    <details style="background:#faf5ff;border:1px solid #ddd6fe;border-radius:10px;padding:14px 18px;margin:14px 0 10px;cursor:pointer">
+      <summary style="font-size:14px;font-weight:bold;color:#7c3aed">📌 第一轮 · 基础任务 · 提示词原文 + 核心收获</summary>
+      <div style="margin-top:10px;font-size:12.5px;color:#4b5563;line-height:1.8;background:#fff;border:1px dashed #c4b5fd;border-radius:6px;padding:10px 12px;white-space:pre-wrap">请帮我写一个基于 Swiper 插件的轮播图 HTML 和 JS 代码。我的具体配置要求如下：
+
+1. 需要实现无缝循环播放（loop: true）。
+2. 需要配置自动播放，每 3.2 秒自动翻页（autoplay）。
+3. 关键要求：手动操作（滑动或点击）后，自动播放需要停止（即设置 pauseOnMouseEnter 或相关交互逻辑），不要再继续自动播。
+4. 底部的圆点分页器需要支持点击切换（pagination，clickable: true）。
+5. 轮播图的初始效果（effect）设置为 cube（3D 方块效果）。
+
+请给我一份完整的、可以直接在浏览器运行的代码（包含引入 Swiper 的 CDN 链接、HTML 结构、CSS 和初始化 JS），并加上清晰的中文注释。</div>
+      <p style="margin-top:8px;font-size:12.5px;color:#7c3aed"><b>核心收获：</b>loop 无缝循环 + autoplay.delay:3200 + disableOnInteraction（手动后停止）+ pagination clickable + effect:'cube'。<code>swiper-bundle.min.js</code> 一键包含所有模块，无需单独引入 Keyboard/Mousewheel/Creative。</p>
+    </details>
+
+    <!-- 第二轮 -->
+    <details style="background:#fff7ed;border:1px solid #fed7aa;border-radius:10px;padding:14px 18px;margin:10px 0;cursor:pointer">
+      <summary style="font-size:14px;font-weight:bold;color:#c2410c">📌 第二轮 · Bug 修复 · 提示词原文 + 根因 + 修复</summary>
+      <div style="margin-top:10px;font-size:12.5px;color:#4b5563;line-height:1.8;background:#fff;border:1px dashed #fdba74;border-radius:6px;padding:10px 12px;white-space:pre-wrap">我发现你在初始化配置里虽然写了 autoplay: { delay: 3200 }，但是没有实现"手动操作后自动播放停止"的功能。请告诉我应该怎么修改代码（是加 stopOnLastSlide 还是监听 touchStart 事件？），请把修改后的完整 JS 代码发给我。
+
+2. 你的 cube（3D方块）效果在页面里看起来是扁平的，没有 3D 的感觉。请检查一下你的代码，是不是少写了关于 swiper-cube 的 CSS 类名，或者少引入了对应的 CSS 文件？请帮我补全这部分样式。</div>
+      <p style="margin-top:8px;font-size:12.5px;color:#c2410c"><b>Bug 根因 + 修复：</b>① 手动后自动播不停 → 两层保险：<code>disableOnInteraction: true</code>（内置）+ 显式监听 <code>touchStart / pointerDown / slideClick / 点圆点</code> → 全部 <code>autoplay.stop()</code>；② Cube 看起来扁平 → 自己 CSS 里写了 <code>overflow:hidden</code> 把 3D 面裁掉了，改成 <code>visible</code> 再加 <code>perspective:1200px</code> 给 3D 变换加视距。</p>
+    </details>
+
+    <!-- 第三轮 -->
+    <details style="background:#ecfdf5;border:1px solid #a7f3d0;border-radius:10px;padding:14px 18px;margin:10px 0;cursor:pointer">
+      <summary style="font-size:14px;font-weight:bold;color:#047857">📌 第三轮 · creative 自学 · 提示词原文 + transform 四属性解读</summary>
+      <div style="margin-top:10px;font-size:12.5px;color:#4b5563;line-height:1.8;background:#fff;border:1px dashed #6ee7b7;border-radius:6px;padding:10px 12px;white-space:pre-wrap">我正在学习 Swiper 插件。课堂上老师只讲了 6 种 effect 效果，但我发现 Swiper 官方文档里还有一种叫 creative（创意定义变换） 的效果没有讲。
+
+请帮我参考 Swiper 官方示例（参考链接/路径：swiper/demo/257-effect-creative.html），帮我写一段包含 creativeEffect 的 transform 写法的初始化代码。
+
+具体需求如下：
+
+1. 代码需要包含 prev 和 next 两个方向的 transform 配置。
+2. 上一张（prev）：要求实现缩小、左移，并带有轻微的角度旋转。
+3. 下一张（next）：要求实现放大、右移进场（参数由你自定义，但要有电影感，比如带一点景深或者透明度变化）。
+4. 请结合代码，用通俗的语言详细解释一下 transform 里面的 translate、rotate、scale、opacity 等属性分别控制什么？ 比如改了哪个数值会让卡片移动变快，改哪个数值会让旋转角度变大？</div>
+      <p style="margin-top:8px;font-size:12.5px;color:#047857"><b>核心收获：</b>creativeEffect.prev/next 两个方向的 transform：<code>translate</code> 管三维位移（Z 越小越远→景深）、<code>scale</code> 管大小、<code>rotate</code> 管 Z 轴平面旋转角度（数值越大角度越大）、<code>opacity</code> 管透明度。默认配方：prev 缩 0.75 + 左移 60% + Z-400 + 转 -12° + 淡出；next 略缩 0.85 + 右移 60% + Z-200 + 转 10°。</p>
+    </details>
+
+    <!-- 第四轮 -->
+    <details style="background:#fdf2f8;border:1px solid #fbcfe8;border-radius:10px;padding:14px 18px;margin:10px 0 4px;cursor:pointer">
+      <summary style="font-size:14px;font-weight:bold;color:#be185d">📌 第四轮 · 发光光影展 + 超纲 API · 提示词原文 + 核心收获</summary>
+      <div style="margin-top:10px;font-size:12.5px;color:#4b5563;line-height:1.8;background:#fff;border:1px dashed #f9a8d4;border-radius:6px;padding:10px 12px;white-space:pre-wrap">我现在要在网页上做一个"光影展"的展品介绍轮播图。请你帮我写一段 HTML + CSS + Swiper JS 代码 放在网页底部
+
+页面需求：
+
+1. 轮播图宽度占满屏幕，比例 16:9。
+2. 展品名称叫"爱达·魔都号"（首艘国产大型邮轮），图片背景我会自己替换。
+3. 重点： 请给轮播图的卡片加上炫酷的发光效果（光效添加）。请用 CSS 的 box-shadow、filter: drop-shadow 或者渐变色边框来实现。
+4. Swiper 基础配置：开启循环（loop），底部圆点分页，带上一张/下一张切换。
+5. 超纲 API 挑战：请帮我加上 键盘控制（Keyboard Control） 和 鼠标滚轮控制（Mousewheel） 功能。请告诉我需要引入什么模块，以及 keyboard 和 mousewheel 的配置项该怎么写，才能让用户按方向键或滚动鼠标滚轮时切换幻灯片。</div>
+      <p style="margin-top:8px;font-size:12.5px;color:#be185d"><b>核心收获：</b>① 炫酷发光三层叠加：外发光边框（<code>.swiper::before</code> + 多层 box-shadow + 呼吸动画）+ 卡片立体感 + 图片 <code>filter:drop-shadow</code> 贴合轮廓发光；② keyboard 键盘方向键（<code>enabled:true</code>）；③ mousewheel 滚轮（<code>forceToAxis:true</code> 强制横向翻页 + <code>releaseOnEdges:true</code> 到边释放给页面）。<b>⚠️ swiper-bundle.min.js 已全部内置，无需额外引入模块！</b></p>
+    </details>
   </div>
 
   <div class="wy-back"><a href="index.html">← 返回课堂实践中心</a>　<a href="swiper-lesson.html">查看教师讲解版 →</a></div>
@@ -235,11 +482,15 @@
 
 <script>
   /**
-   * Swiper 课堂操作任务 · 大国重器光影展
+   * Swiper 课堂操作任务 · 大国重器光影展（综合创作版）
    * 作者：潘贺杨
-   * 建立时间：2026-11-06
+   * 建立时间：2026-11-06 · 更新：2026-11-11
    * 使用大模型：Trae
-   * 功能名称：Swiper 四种难度轮播 + 六种效果实时切换
+   * 功能名称：Swiper 四种难度轮播 + 7 种效果实时切换 + keyboard 键盘控制
+   *   任务 1：最小轮播（空配置）
+   *   任务 2：pagination clickable + navigation + loop + speed
+   *   任务 3：autoplay + disableOnInteraction: false
+   *   任务 4：slide/fade/cube/coverflow/flip/cards + 任务二 creative 皮影 + 任务三 keyboard + 第 6 件展品魔都号
    */
 
   // ── 任务 1：初始化 #wySw1，让它至少可以拖动 ──
@@ -275,47 +526,157 @@
   });
 
 
-  // ── 任务 4：初始化 #wySw4，循环 + 3.2 秒自动播放 + 圆点 + 初始 effect ──
+  // ── 任务 4：初始化 #wySw4 ──
+  // 基础配置 + keyboard 键盘控制（任务三超纲能力：← → 翻页）
+  // 关键：autoplay.disableOnInteraction: true → 手动拖拽/点击后自动播放永久停止
   var wySw4 = new Swiper('#wySw4', {
     loop: true,
     speed: 800,
     effect: 'slide',
     autoplay: {
       delay: 3200,
-      disableOnInteraction: false
+      // ✅ 第 1 层保险：Swiper 内置，手动交互后 autoplay 永久停止
+      disableOnInteraction: true,
+      // ❌ pauseOnMouseEnter 是"悬停暂停、移开继续"，不是我们要的，设 false
+      pauseOnMouseEnter: false
     },
     pagination: {
       el: '#wyPag4'
+    },
+    // 任务三 · 超纲能力：keyboard 方向键控制（课堂没讲，AI 协作自学）
+    keyboard: {
+      enabled: true,
+      onlyInViewport: false
     }
   });
 
 
-  // ── 任务 4 进阶：补全按钮点击事件，实现六种效果实时切换 ──
-  // 点击效果按钮 → 销毁旧实例 → 用新 effect 重建
+  // ── 任务 4 第 2 层保险：显式监听所有手动交互，强制停止 autoplay ──
+  // 原因：disableOnInteraction 对"点击分页器圆点"可能不生效（圆点在 wrapper 外部），
+  // 所以显式监听，任何手动操作（拖拽/鼠标按下/点圆点/点 slide）都会停掉 autoplay。
+  var wySw4StopAutoplay = function () {
+    if (wySw4.autoplay && wySw4.autoplay.running) {
+      wySw4.autoplay.stop();
+    }
+  };
+  wySw4.on('touchStart', wySw4StopAutoplay);   // 移动端触摸开始
+  wySw4.on('pointerDown', wySw4StopAutoplay);  // 桌面端鼠标按下
+  wySw4.on('slideClick',  wySw4StopAutoplay);  // 点击 slide
+  // 分页器圆点在 wrapper 外 → 单独监听（Swiper 内部可能不算 interaction）
+  document.querySelectorAll('#wyPag4 .swiper-pagination-bullet')
+    .forEach(function (b) { b.addEventListener('click', wySw4StopAutoplay); });
+
+
+  // ── creative 效果的自定义 transform 配置（任务二 · 皮影选片墙效果）──
+  // 参考：https://swiperjs.com/swiper-api#param-creativeEffect
+  //
+  // 📖 transform 四属性解释：
+  //   translate: [X, Y, Z]  → 三维位移。X 水平（+右/-左）、Y 垂直（+下/-上）、Z 景深（越小越远）
+  //   scale:     0~1.5      → 整体缩放。1=原大、0.5=一半大。改小让 prev 退远时缩小
+  //   rotate:    [X, Y, Z] → 三轴旋转（角度）。creative 常用 Z 轴（平面旋转），正负决定顺/逆时针
+  //   opacity:   0~1        → 透明度。0=全透明、1=完全不透明。改小让 prev 退场淡出
+  //
+  // 本配置：prev 缩到 75%、左移 60%、Z 后退 400px（远景）、转 -12°、半透明；
+  //         next 略缩 85%、右移 60%、Z 后退 200px（近一点）、转 10°。
+  //         切换时就像从一堆倾斜的选片墙里抽出当前这张。
+  var creativeFx = {
+    // 上一张（即将退场）：缩小 + 左移 + 后退 + 逆时针旋转 + 半透明淡出
+    prev: {
+      translate: ['-60%', 0, -400],  // X=-60% 左移 60% 宽度；Z=-400 后退 400px 缩到远景
+      scale: 0.75,                    // 缩小到 75%
+      rotate: [0, 0, -12],           // Z 轴逆时针旋转 12°
+      opacity: 0.4                    // 半透明（退场淡出效果）
+    },
+    // 下一张（即将进场）：略缩 + 右移 + 近后退 + 顺时针旋转 + 较亮
+    next: {
+      translate: ['60%', 0, -200],   // X=+60% 右移 60%；Z=-200 后退 200px（比 prev 近，景深层次）
+      scale: 0.85,                     // 略缩小到 85%
+      rotate: [0, 0, 10],            // Z 轴顺时针旋转 10°（反向倾斜，形成对称感）
+      opacity: 0.7                     // 更亮一些，准备接棒
+    }
+  };
+
+
+  // ── 任务 4 进阶：7 种效果按钮点击 → 销毁旧实例 → 用新 effect 重建 ──
   document.querySelectorAll('.wy-fx button').forEach(function(btn){
     btn.addEventListener('click', function(){
-      // TODO 1：先给当前按钮加 wy-on 类、其余按钮去掉 wy-on（高亮当前按钮）
+      // ① 切换按钮高亮态（wy-on 类）
       document.querySelectorAll('.wy-fx button').forEach(function(b){ b.classList.remove('wy-on'); });
       btn.classList.add('wy-on');
 
-      // TODO 2：销毁旧的 wySw4 实例
-      wySw4.destroy();
-
-      // TODO 3：用新 effect 重建实例（把其它配置原样保留）
+      // ② 读取目标 effect
       var newEffect = btn.dataset.fx;
-      wySw4 = new Swiper('#wySw4', {
+
+      // ③ 重建配置对象（所有 effect 共享的基础配置）
+      var newConfig = {
         loop: true,
         speed: 800,
         effect: newEffect,
         autoplay: {
           delay: 3200,
-          disableOnInteraction: false
+          // ✅ 新实例也保持"手动后停止自动播"
+          disableOnInteraction: true,
+          pauseOnMouseEnter: false
         },
         pagination: {
           el: '#wyPag4'
-        }
-      });
+        },
+        keyboard: { enabled: true, onlyInViewport: false }
+      };
+
+      // ④ 如果是 creative 效果，额外加 creativeEffect 配置
+      if (newEffect === 'creative') {
+        newConfig.creativeEffect = creativeFx;
+      }
+
+      // ⑤ 销毁旧实例 + 重建
+      wySw4.destroy();
+      wySw4 = new Swiper('#wySw4', newConfig);
+
+      // ⑥ 新实例也要重新绑定两层停止保险（destroy 后事件监听器已清除）
+      wySw4.on('touchStart', wySw4StopAutoplay);
+      wySw4.on('pointerDown', wySw4StopAutoplay);
+      wySw4.on('slideClick',  wySw4StopAutoplay);
+      document.querySelectorAll('#wyPag4 .swiper-pagination-bullet')
+        .forEach(function (b) { b.addEventListener('click', wySw4StopAutoplay); });
     });
+  });
+
+
+  // ── 任务 5：炫酷发光光影展（爱达·魔都号）──
+  // 超纲 API：keyboard 键盘方向键 + mousewheel 鼠标滚轮
+  // 注：swiper-bundle.min.js 已内置 Keyboard / Mousewheel 模块，无需额外引入
+  var wySw5 = new Swiper('#wySw5', {
+    // ① 基础配置
+    loop: true,
+    speed: 800,
+
+    // ② 分页 + 导航
+    pagination: {
+      el: '#wySw5 .swiper-pagination',
+      clickable: true
+    },
+    navigation: {
+      prevEl: '#wySw5 .swiper-button-prev',
+      nextEl: '#wySw5 .swiper-button-next'
+    },
+
+    // ③ 超纲：keyboard 键盘控制（课堂没讲）
+    //    ← / → 翻页；Home / End 跳首张/末张
+    keyboard: {
+      enabled: true,
+      onlyInViewport: false,
+      pageUpDown: false
+    },
+
+    // ④ 超纲：mousewheel 鼠标滚轮控制（课堂没讲）
+    mousewheel: {
+      enabled: true,
+      forceToAxis: true,      // 强制横向翻页（忽略纵向滚动）⭐ 关键
+      releaseOnEdges: true,   // 到首尾时释放滚轮给页面正常滚动 ⭐ 关键
+      sensitivity: 1,         // 灵敏度 0.1~10，默认 1
+      invert: false           // false=向下滚→下一张（自然方向）
+    }
   });
 </script>
 </body>
