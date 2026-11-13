@@ -629,8 +629,8 @@
         newConfig.creativeEffect = creativeFx;
       }
 
-      // ⑤ 销毁旧实例 + 重建
-      wySw4.destroy();
+      // ⑤ 销毁旧实例 + 重建；保留 DOM 容器，避免切换效果后图片区域被删除
+      wySw4.destroy(false, true);
       wySw4 = new Swiper('#wySw4', newConfig);
 
       // ⑥ 新实例也要重新绑定两层停止保险（destroy 后事件监听器已清除）
