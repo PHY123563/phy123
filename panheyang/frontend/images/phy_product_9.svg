@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <!-- 姓名：潘贺杨 | 学号：24002120316 | 时间：2026-11-20 | 大模型：GLM-5.3-Flash | 智能音箱产品插画 -->
+  <defs>
+    <linearGradient id="bg9" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#101637"/><stop offset="1" stop-color="#251245"/>
+    </linearGradient>
+    <radialGradient id="top9" cx="0.5" cy="0.5" r="0.6">
+      <stop offset="0" stop-color="#8fd3ff"/><stop offset="1" stop-color="#2c3a6e"/>
+    </radialGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#bg9)"/>
+  <circle cx="650" cy="460" r="110" fill="#b49bff" opacity="0.08"/>
+  <ellipse cx="400" cy="502" rx="150" ry="20" fill="#0a1024"/>
+  <path d="M310 220 a90 26 0 0 1 180 0 l0 240 a90 30 0 0 1 -180 0 z" fill="#2e3a6e"/>
+  <ellipse cx="400" cy="220" rx="90" ry="26" fill="url(#top9)"/>
+  <circle cx="400" cy="220" r="12" fill="#0a1024"/>
+  <path d="M318 300 q82 30 164 0" stroke="#4a5890" stroke-width="5" fill="none"/>
+  <path d="M318 340 q82 30 164 0" stroke="#4a5890" stroke-width="5" fill="none"/>
+  <path d="M318 380 q82 30 164 0" stroke="#4a5890" stroke-width="5" fill="none"/>
+  <path d="M470 160 a80 80 0 0 1 60 74" stroke="#8fd3ff" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.8"/>
+  <path d="M486 132 a110 110 0 0 1 84 100" stroke="#8fd3ff" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.45"/>
+</svg>

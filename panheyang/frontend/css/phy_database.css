@@ -1,0 +1,119 @@
+/*
+  姓名：潘贺杨 | 学号：24002120316 | 时间：2026-11-20 | 大模型：GLM-5.3-Flash
+  功能：数据库连接测试页样式。连接表单卡片、成功/错误提示条。
+*/
+
+/* 顶部区压缩高度，突出表单 */
+.phy_db_hero {
+  padding-top: 56px;
+  padding-bottom: 10px;
+}
+
+.phy_db_hero .phy_hero_title {
+  font-size: 34px;
+  margin-bottom: 18px;
+}
+
+/* 连接表单卡片 */
+.phy_db_card {
+  max-width: 460px;
+  margin: 0 auto;
+  padding: 32px 30px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.phy_db_label {
+  font-size: 14px;
+  color: #aeb7cc;
+  letter-spacing: 2px;
+}
+
+.phy_db_input {
+  width: 100%;
+  font-size: 15px;
+  color: #e8ecf5;
+  padding: 11px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(11, 16, 38, 0.55);
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.phy_db_input:focus {
+  border-color: rgba(143, 211, 255, 0.6);
+  box-shadow: 0 0 0 3px rgba(143, 211, 255, 0.12);
+}
+
+.phy_db_btn {
+  margin-top: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 4px;
+  color: #0b1026;
+  padding: 12px 0;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #8fd3ff, #b49bff);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.phy_db_btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(120, 150, 255, 0.35);
+}
+
+.phy_db_btn:disabled {
+  opacity: 0.6;
+  cursor: wait;
+  transform: none;
+}
+
+/* 结果提示区 */
+.phy_db_result {
+  margin-top: 16px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-size: 14px;
+  line-height: 1.8;
+  word-break: break-all;
+}
+
+/* 成功提示：绿色 */
+.phy_db_result_ok {
+  color: #b8f5c9;
+  background: rgba(52, 199, 123, 0.14);
+  border: 1px solid rgba(52, 199, 123, 0.45);
+}
+
+/* 错误提示：红色 */
+.phy_db_result_err {
+  color: #ffc9c9;
+  background: rgba(255, 82, 82, 0.14);
+  border: 1px solid rgba(255, 82, 82, 0.45);
+}
+
+/* 底部提示文字 */
+.phy_db_tip {
+  margin-top: 18px;
+  font-size: 12px;
+  color: #7d86a0;
+}
+
+@media (max-width: 600px) {
+  .phy_db_hero {
+    padding-top: 46px;
+  }
+
+  .phy_db_hero .phy_hero_title {
+    font-size: 26px;
+  }
+}

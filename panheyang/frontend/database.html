@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!--
+  姓名：潘贺杨 | 学号：24002120316 | 时间：2026-11-20 | 大模型：GLM-5.3-Flash
+  功能：数据库连接测试页。输入 MySQL 用户名与密码，提交到后端 /api/phy_db_connect
+        尝试连接 MySQL，连接成功与失败均在页面和控制台给出提示。
+-->
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>数据库连接测试 | 潘贺杨 24002120316</title>
+  <link rel="stylesheet" href="css/phy_index.css">
+  <link rel="stylesheet" href="css/phy_database.css">
+</head>
+<body>
+  <!-- canvas 背景动画层（与首页共用） -->
+  <canvas id="phy_canvas_bg" aria-hidden="true"></canvas>
+
+  <!-- 顶部信息区 -->
+  <header class="phy_hero phy_db_hero">
+    <p class="phy_hero_tag">数据库连接测试</p>
+    <h1 class="phy_hero_title">MySQL 连接测试</h1>
+    <div class="phy_hero_meta">
+      <span class="phy_meta_item">姓名：潘贺杨</span>
+      <span class="phy_meta_item">学号：24002120316</span>
+      <span class="phy_meta_item">数据库：MySQL</span>
+    </div>
+  </header>
+
+  <!-- 主体：连接表单 -->
+  <main class="phy_nav_main phy_db_main">
+    <form class="phy_db_card" id="phy_db_form" autocomplete="off">
+      <label class="phy_db_label" for="phy_db_user">用户名</label>
+      <input class="phy_db_input" type="text" id="phy_db_user" value="root">
+
+      <label class="phy_db_label" for="phy_db_pass">密码</label>
+      <input class="phy_db_input" type="password" id="phy_db_pass" value="xxxx" placeholder="请输入 MySQL 密码">
+
+      <button class="phy_db_btn" type="submit" id="phy_db_submit">连 接 数 据 库</button>
+
+      <!-- 结果提示区：成功为绿色，失败为红色 -->
+      <div class="phy_db_result" id="phy_db_result" hidden></div>
+    </form>
+
+    <p class="phy_db_tip">提示：默认用户名 root、密码 xxxx，请改成你本机 MySQL 的真实密码后点击连接</p>
+  </main>
+
+  <footer class="phy_footer">
+    <p>© 2026 潘贺杨 · 24002120316 · 高级网页设计课程作业</p>
+  </footer>
+
+  <script src="js/phy_canvas_bg.js"></script>
+  <script src="js/phy_database.js"></script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<!--
+  姓名：潘贺杨 | 学号：24002120316 | 时间：2026-11-20 | 大模型：GLM-5.3-Flash
+  功能：图文列表页（gallery）。通过后端接口 GET /api/phy_products 从数据库
+        phy_product 表读取产品图文数据，以图文卡片形式展示，
+        页面同时展示接口链接与数据内容。
+-->
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>图文列表 | 潘贺杨 24002120316</title>
+  <link rel="stylesheet" href="css/phy_index.css">
+  <link rel="stylesheet" href="css/phy_products.css">
+</head>
+<body>
+  <!-- canvas 背景动画层（与首页共用） -->
+  <canvas id="phy_canvas_bg" aria-hidden="true"></canvas>
+
+  <!-- 顶部信息区 -->
+  <header class="phy_hero phy_products_hero">
+    <p class="phy_hero_tag">图文列表</p>
+    <h1 class="phy_hero_title">智能硬件图鉴</h1>
+    <div class="phy_hero_meta">
+      <span class="phy_meta_item">姓名：潘贺杨</span>
+      <span class="phy_meta_item">学号：24002120316</span>
+      <span class="phy_meta_item">数据来源：MySQL 表 phy_product</span>
+    </div>
+  </header>
+
+  <!-- 主体：接口信息 + 图文列表 -->
+  <main class="phy_nav_main phy_products_main">
+    <!-- 后端接口链接展示 -->
+    <div class="phy_products_api">
+      <span class="phy_products_api_label">接口地址：</span>
+      <a class="phy_products_api_link" href="http://localhost:8316/api/phy_products" target="_blank" rel="noopener">GET http://localhost:8316/api/phy_products</a>
+      <span class="phy_products_api_count" id="phy_products_count"></span>
+    </div>
+
+    <!-- 产品图文列表（由 js/phy_products.js 动态渲染） -->
+    <div class="phy_products_grid" id="phy_products_grid">
+      <div class="phy_products_loading">正在加载图文数据…</div>
+    </div>
+  </main>
+
+  <footer class="phy_footer">
+    <p>© 2026 潘贺杨 · 24002120316 · 高级网页设计课程作业</p>
+  </footer>
+
+  <script src="js/phy_canvas_bg.js"></script>
+  <script src="js/phy_products.js"></script>
+</body>
+</html>

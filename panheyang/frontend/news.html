@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<!--
+  姓名：潘贺杨 | 学号：24002120316 | 时间：2026-11-20 | 大模型：GLM-5.3-Flash
+  功能：科技新闻列表页。通过后端接口 GET /api/phy_news 从数据库 phy_news 表读取新闻，
+        页面同时展示接口链接与新闻数据内容，成功与错误信息均输出到浏览器控制台。
+-->
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>科技新闻列表 | 潘贺杨 24002120316</title>
+  <link rel="stylesheet" href="css/phy_index.css">
+  <link rel="stylesheet" href="css/phy_news.css">
+</head>
+<body>
+  <!-- canvas 背景动画层（与首页共用） -->
+  <canvas id="phy_canvas_bg" aria-hidden="true"></canvas>
+
+  <!-- 顶部信息区 -->
+  <header class="phy_hero phy_news_hero">
+    <p class="phy_hero_tag">科技新闻列表</p>
+    <h1 class="phy_hero_title">科技资讯速览</h1>
+    <div class="phy_hero_meta">
+      <span class="phy_meta_item">姓名：潘贺杨</span>
+      <span class="phy_meta_item">学号：24002120316</span>
+      <span class="phy_meta_item">数据来源：MySQL 表 phy_news</span>
+    </div>
+  </header>
+
+  <!-- 主体：接口信息 + 新闻列表 -->
+  <main class="phy_nav_main phy_news_main">
+    <!-- 后端接口链接展示 -->
+    <div class="phy_news_api">
+      <span class="phy_news_api_label">后端接口：</span>
+      <a class="phy_news_api_link" href="http://localhost:8316/api/phy_news" target="_blank" rel="noopener">GET http://localhost:8316/api/phy_news</a>
+      <span class="phy_news_api_count" id="phy_news_count"></span>
+    </div>
+
+    <!-- 新闻数据列表（由 js/phy_news.js 动态渲染） -->
+    <div class="phy_news_list" id="phy_news_list">
+      <div class="phy_news_loading">正在加载新闻数据…</div>
+    </div>
+  </main>
+
+  <footer class="phy_footer">
+    <p>© 2026 潘贺杨 · 24002120316 · 高级网页设计课程作业</p>
+  </footer>
+
+  <script src="js/phy_canvas_bg.js"></script>
+  <script src="js/phy_news.js"></script>
+</body>
+</html>

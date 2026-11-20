@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <!-- 姓名：潘贺杨 | 学号：24002120316 | 时间：2026-11-20 | 大模型：GLM-5.3-Flash | 便携激光投影仪产品插画 -->
+  <defs>
+    <linearGradient id="bg5" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0d1330"/><stop offset="1" stop-color="#231244"/>
+    </linearGradient>
+    <linearGradient id="beam" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#9be8ff" stop-opacity="0.85"/>
+      <stop offset="1" stop-color="#9be8ff" stop-opacity="0.06"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#bg5)"/>
+  <rect x="560" y="130" width="150" height="100" rx="10" fill="#0a0f26" stroke="#33406e" stroke-width="4"/>
+  <polygon points="330,300 560,150 560,220 330,330" fill="url(#beam)"/>
+  <polygon points="330,330 560,220 560,290 330,360" fill="url(#beam)" opacity="0.7"/>
+  <rect x="180" y="270" width="180" height="110" rx="22" fill="#222a52"/>
+  <rect x="200" y="288" width="70" height="10" rx="5" fill="#8fd3ff" opacity="0.9"/>
+  <circle cx="352" cy="325" r="20" fill="#0d1330" stroke="#5a6aa8" stroke-width="5"/>
+  <rect x="196" y="392" width="30" height="26" rx="6" fill="#141a38"/>
+  <rect x="314" y="392" width="30" height="26" rx="6" fill="#141a38"/>
+</svg>

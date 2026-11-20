@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <!-- 姓名：潘贺杨 | 学号：24002120316 | 时间：2026-11-20 | 大模型：GLM-5.3-Flash | 运动相机产品插画 -->
+  <defs>
+    <linearGradient id="bg10" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0e1433"/><stop offset="1" stop-color="#1f1345"/>
+    </linearGradient>
+    <linearGradient id="cam10" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#dfe8fa"/><stop offset="1" stop-color="#aebfe0"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#bg10)"/>
+  <circle cx="150" cy="140" r="95" fill="#8fd3ff" opacity="0.07"/>
+  <ellipse cx="400" cy="470" rx="160" ry="20" fill="#0a1024"/>
+  <rect x="300" y="240" width="200" height="150" rx="24" fill="url(#cam10)"/>
+  <rect x="336" y="272" width="94" height="86" rx="16" fill="#0e1330"/>
+  <circle cx="383" cy="315" r="30" fill="#1c244e"/>
+  <circle cx="383" cy="315" r="16" fill="#57a7ff"/>
+  <circle cx="374" cy="306" r="5" fill="#ffffff" opacity="0.85"/>
+  <circle cx="466" cy="292" r="10" fill="#ff5f6d"/>
+  <rect x="466" y="310" width="18" height="34" rx="9" fill="#39456f"/>
+  <rect x="286" y="404" width="228" height="24" rx="12" fill="#39456f"/>
+  <rect x="286" y="440" width="228" height="18" rx="9" fill="#20274a"/>
+</svg>

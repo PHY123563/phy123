@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <!-- 姓名：潘贺杨 | 学号：24002120316 | 时间：2026-11-20 | 大模型：GLM-5.3-Flash | 折叠屏手机产品插画 -->
+  <defs>
+    <linearGradient id="bg3" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#101637"/><stop offset="1" stop-color="#1d1143"/>
+    </linearGradient>
+    <linearGradient id="scr" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#57a7ff"/><stop offset="1" stop-color="#a86bff"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#bg3)"/>
+  <circle cx="650" cy="130" r="95" fill="#8fd3ff" opacity="0.08"/>
+  <circle cx="130" cy="470" r="110" fill="#b49bff" opacity="0.08"/>
+  <rect x="300" y="120" width="96" height="360" rx="20" fill="#151b3e"/>
+  <rect x="398" y="120" width="96" height="360" rx="20" fill="#1c244e"/>
+  <rect x="316" y="140" width="66" height="320" rx="14" fill="url(#scr)" opacity="0.9"/>
+  <rect x="412" y="140" width="66" height="320" rx="14" fill="url(#scr)" opacity="0.7"/>
+  <rect x="393" y="120" width="8" height="360" fill="#0a0f26"/>
+  <rect x="330" y="170" width="40" height="8" rx="4" fill="#ffffff" opacity="0.8"/>
+  <rect x="330" y="190" width="28" height="6" rx="3" fill="#ffffff" opacity="0.5"/>
+</svg>
