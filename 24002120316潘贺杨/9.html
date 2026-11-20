@@ -2,6 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <!--
+    作者：潘贺杨
+    创建时间：2026-10-20 14:30:00
+    模型：未知（历史页面，规则追溯）
+    功能：练习 09 — 事件的冒泡与捕获（进阶）
+    -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>事件的冒泡与捕获</title>
     <style>
@@ -33,29 +39,35 @@
     </div>
     <input type="text" id="input" placeholder="请输入内容">
     <script>
+        // 功能：按钮点击事件，弹出提示
         function clickFun() {
             alert("点击事件");
         }
         var box = document.getElementById("box");
 //只有在id选择器可以直接使用box，也就是上面获取元素可以省
+        // 功能：box 点击冒泡监听，弹出提示
         box.addEventListener("click", function () {
             alert("box");
         }, false); //false表示冒泡，true表示捕获
         var h2 = document.getElementById("h2");
+        // 功能：h2 点击冒泡监听，弹出提示
         h2.addEventListener("click", function () {
             alert("h2");
         }, false);
         //var box = document.getElementById("em");
         var em = document.getElementById("em");
+        // 功能：em 点击冒泡监听，弹出提示并阻止冒泡
         em.addEventListener("click", function () {
             alert("em");
             stopPropagation();//阻止事件冒泡
         }, false);
+        // 功能：box 鼠标移动捕获监听，显示鼠标坐标
         box.addEventListener("mousemove", function () {
             h2.innerHTML="鼠标在盒子内易懂的坐标是："
             e.clientx + "," + e.clienty + "<br>鼠标在盒子内的坐标是："
             + (e.offsetx) + "," + (e.offsety);
         }, true); //false表示冒泡，true表示捕获
+    // 功能：输入框键盘按下监听，显示按下的键名
     input.addEventListener("keydown", function (e) {
         alert("按下了键盘" + e.key+"键");
     }, false);
