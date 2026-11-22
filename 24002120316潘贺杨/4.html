@@ -2,6 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <!--
+    作者：潘贺杨
+    创建时间：2026-10-16 09:00:00
+    模型：未知（历史页面，规则追溯）
+    功能：练习 04 — JS 对象的应用（明信片案例，含属性和方法）
+    -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JS对象的应用</title>
 </head>
@@ -14,11 +20,12 @@
             sex: "男",
             hobby: ["篮球", "足球", "羽毛球"],
             grade: "大三",
-            // 方法
+            // 功能：返回学生自我介绍的字符串
             introduce: function () {
                 // 反引号可以嵌入表达式，this指向当前对象$()这个$就是要嵌入的变量
                 return `我的名字叫：${this.name}，年龄：${this.age}，性别：${this.sex}，年级：${this.grade}，爱好：${this.hobby}`;
             },
+            // 功能：学生升级，按年级数组推进一格，到达尽头显示毕业
             upgrade: function () {
               const grades = ["大一", "大二", "大三", "大四"];
             //   变量的提升，提升的是变量的声明，变量的赋值不会提升

@@ -2,6 +2,12 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
+    <!--
+    作者：潘贺杨
+    创建时间：2026-10-23 14:10:00
+    模型：GLM-5.3-Flash
+    功能：移动端固定底部导航（4 项），iconfont SVG 内联方式，含数字徽章和红点
+    -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="description" content="移动端底部导航 · iconfont SVG 方式">
     <title>移动端底部导航 · SVG</title>
@@ -292,6 +298,7 @@
     </div>
 
     <script>
+        // 功能：导航项点击切换活动态（移除所有 is-active 后给当前项加上）
         var phy_items = document.querySelectorAll('.phy-nav-item');
         phy_items.forEach(function (phy_item) {
             phy_item.addEventListener('click', function () {
@@ -300,6 +307,7 @@
             });
         });
 
+        // 功能：搜索徽章点击递减，到 0 时隐藏
         var phy_badge = document.getElementById('phy_badge_search');
         if (phy_badge) {
             phy_badge.addEventListener('click', function (phy_evt) {
@@ -313,6 +321,7 @@
             });
         }
 
+        // 功能：保存项红点点击后隐藏
         var phy_dot = document.getElementById('phy_dot_save');
         if (phy_dot) {
             phy_dot.addEventListener('click', function (phy_evt) {
