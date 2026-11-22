@@ -1,0 +1,195 @@
+/*
+  姓名：潘贺杨 | 学号：24002120316 | 时间：2026-11-20 | 大模型：GLM-5.3-Flash
+  功能：首页样式。深色星空渐变背景 + 毛玻璃卡片导航，响应式布局。
+*/
+
+/* ========== 基础重置 ========== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+  font-family: "PingFang SC", "Microsoft YaHei", "Segoe UI", sans-serif;
+  color: #e8ecf5;
+  background: linear-gradient(135deg, #0b1026 0%, #141a3a 45%, #1c1140 100%);
+  overflow-x: hidden;
+}
+
+/* ========== canvas 背景动画层 ========== */
+#phy_canvas_bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  display: block;
+}
+
+/* ========== 顶部信息区 ========== */
+.phy_hero {
+  position: relative;
+  z-index: 1;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 88px 24px 36px;
+  text-align: center;
+}
+
+.phy_hero_tag {
+  display: inline-block;
+  font-size: 13px;
+  letter-spacing: 4px;
+  color: #8fd3ff;
+  border: 1px solid rgba(143, 211, 255, 0.35);
+  border-radius: 999px;
+  padding: 6px 18px;
+  margin-bottom: 22px;
+  background: rgba(143, 211, 255, 0.08);
+}
+
+.phy_hero_title {
+  font-size: 44px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  background: linear-gradient(90deg, #a8c8ff 0%, #e6d6ff 50%, #8fd3ff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 26px;
+}
+
+.phy_hero_meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.phy_meta_item {
+  font-size: 14px;
+  color: #c3cbde;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  padding: 8px 16px;
+  backdrop-filter: blur(6px);
+}
+
+.phy_cate {
+  font-style: normal;
+  font-size: 12px;
+  padding: 2px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #9aa4bd;
+  margin-left: 4px;
+}
+
+.phy_cate_active {
+  color: #0b1026;
+  background: linear-gradient(90deg, #8fd3ff, #b49bff);
+  border-color: transparent;
+  font-weight: 600;
+}
+
+/* ========== 主体导航区 ========== */
+.phy_nav_main {
+  position: relative;
+  z-index: 1;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 30px 24px 60px;
+  text-align: center;
+}
+
+.phy_nav_heading {
+  font-size: 24px;
+  letter-spacing: 6px;
+  margin-bottom: 10px;
+}
+
+.phy_nav_sub {
+  font-size: 13px;
+  color: #8d95ad;
+  margin-bottom: 34px;
+}
+
+.phy_nav_grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 22px;
+}
+
+.phy_nav_card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  text-decoration: none;
+  color: inherit;
+  padding: 26px 24px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+  text-align: left;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.phy_nav_card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(143, 211, 255, 0.55);
+  box-shadow: 0 14px 34px rgba(80, 130, 255, 0.25);
+}
+
+.phy_card_icon {
+  font-size: 24px;
+  color: #8fd3ff;
+}
+
+.phy_card_name {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.phy_card_desc {
+  font-size: 13px;
+  line-height: 1.7;
+  color: #aab3c8;
+}
+
+.phy_card_file {
+  font-size: 12px;
+  color: #7d86a0;
+  font-family: Consolas, monospace;
+}
+
+/* 占位提示卡样式：弱化显示 */
+.phy_card_more {
+  border-style: dashed;
+  opacity: 0.75;
+}
+
+/* ========== 页脚 ========== */
+.phy_footer {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 18px 0 30px;
+  font-size: 12px;
+  color: #6f7891;
+}
+
+/* ========== 响应式 ========== */
+@media (max-width: 600px) {
+  .phy_hero {
+    padding-top: 64px;
+  }
+
+  .phy_hero_title {
+    font-size: 30px;
+  }
+}

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <!-- 姓名：潘贺杨 | 学号：24002120316 | 时间：2026-11-20 | 大模型：GLM-5.3-Flash | 便携固态硬盘产品插画 -->
+  <defs>
+    <linearGradient id="bg8" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f1434"/><stop offset="1" stop-color="#1e1240"/>
+    </linearGradient>
+    <linearGradient id="ssd" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2e3a6e"/><stop offset="1" stop-color="#1a2145"/>
+    </linearGradient>
+    <linearGradient id="rgb" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ff5f8f"/><stop offset="0.5" stop-color="#8fd3ff"/><stop offset="1" stop-color="#b49bff"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#bg8)"/>
+  <circle cx="170" cy="470" r="110" fill="#b49bff" opacity="0.08"/>
+  <rect x="250" y="200" width="300" height="200" rx="30" fill="url(#ssd)" stroke="#4a5890" stroke-width="4"/>
+  <rect x="250" y="200" width="300" height="200" rx="30" fill="none" stroke="url(#rgb)" stroke-width="3" opacity="0.9"/>
+  <rect x="286" y="238" width="120" height="12" rx="6" fill="#39456f"/>
+  <rect x="286" y="264" width="160" height="12" rx="6" fill="#39456f"/>
+  <rect x="286" y="290" width="90" height="12" rx="6" fill="#39456f"/>
+  <text x="480" y="360" font-family="Consolas, monospace" font-size="42" fill="#8fd3ff" text-anchor="middle">2TB</text>
+  <circle cx="310" cy="356" r="14" fill="url(#rgb)"/>
+</svg>

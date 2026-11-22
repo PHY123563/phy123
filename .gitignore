@@ -19,3 +19,7 @@ bin-release/
 
 # IDE
 .trae/
+
+# Node 依赖与临时文件
+node_modules/
+*.lnk

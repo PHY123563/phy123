@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<!--
+  姓名：潘贺杨 | 学号：24002120316 | 时间：2026-11-20 | 大模型：GLM-5.3-Flash
+  功能：项目首页。展示姓名、学号、项目名称与类别，提供所有已完成页面的导航入口，
+        背景为 canvas 粒子连线动画，主体为页面链接导航。
+-->
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>星屿 · 个人网页作品集导航 | 潘贺杨 24002120316</title>
+  <link rel="stylesheet" href="css/phy_index.css">
+</head>
+<body>
+  <!-- canvas 背景动画层 -->
+  <canvas id="phy_canvas_bg" aria-hidden="true"></canvas>
+
+  <!-- 顶部信息区 -->
+  <header class="phy_hero">
+    <p class="phy_hero_tag">高级网页设计 · 课程综合作业</p>
+    <h1 class="phy_hero_title">星屿 · 个人网页作品集导航</h1>
+    <div class="phy_hero_meta">
+      <span class="phy_meta_item">姓名：潘贺杨</span>
+      <span class="phy_meta_item">学号：24002120316</span>
+      <span class="phy_meta_item">项目名称：星屿 —— 个人网页作品集导航站</span>
+      <span class="phy_meta_item">
+        项目类别：
+        <em class="phy_cate phy_cate_active">自选</em>
+        <em class="phy_cate">模仿</em>
+      </span>
+    </div>
+  </header>
+
+  <!-- 主体：已完成页面导航 -->
+  <main class="phy_nav_main">
+    <h2 class="phy_nav_heading">页面导航</h2>
+    <p class="phy_nav_sub">以下是本项目已完成的全部 HTML 页面，点击卡片即可跳转</p>
+
+    <nav class="phy_nav_grid">
+      <a class="phy_nav_card phy_card_now" href="index.html">
+        <span class="phy_card_icon">◈</span>
+        <span class="phy_card_name">首页 · 作品导航</span>
+        <span class="phy_card_desc">项目信息展示与全部页面入口（当前页）</span>
+        <span class="phy_card_file">index.html</span>
+      </a>
+
+      <a class="phy_nav_card" href="gallery.html">
+        <span class="phy_card_icon">🛰</span>
+        <span class="phy_card_name">图文列表</span>
+        <span class="phy_card_desc">读取数据库 phy_product 表，图文卡片展示智能硬件产品</span>
+        <span class="phy_card_file">gallery.html</span>
+      </a>
+
+      <a class="phy_nav_card" href="news.html">
+        <span class="phy_card_icon">📰</span>
+        <span class="phy_card_name">科技新闻列表</span>
+        <span class="phy_card_desc">读取数据库 phy_news 表数据，展示接口链接与新闻内容</span>
+        <span class="phy_card_file">news.html</span>
+      </a>
+
+      <a class="phy_nav_card" href="database.html">
+        <span class="phy_card_icon">⛁</span>
+        <span class="phy_card_name">数据库连接测试</span>
+        <span class="phy_card_desc">输入 MySQL 用户名与密码，在线测试数据库连接并查看结果</span>
+        <span class="phy_card_file">database.html</span>
+      </a>
+
+      <!-- 占位提示卡：后续每完成一个页面，就在这里追加一张链接卡片 -->
+      <div class="phy_nav_card phy_card_more">
+        <span class="phy_card_icon">＋</span>
+        <span class="phy_card_name">更多页面 · 建设中</span>
+        <span class="phy_card_desc">后续完成的功能页面将依次追加为导航卡片</span>
+        <span class="phy_card_file">敬请期待</span>
+      </div>
+    </nav>
+  </main>
+
+  <footer class="phy_footer">
+    <p>© 2026 潘贺杨 · 24002120316 · 高级网页设计课程作业</p>
+  </footer>
+
+  <script src="js/phy_canvas_bg.js"></script>
+  <script>
+    // 页面加载后请求健康检查接口，按约定把服务器返回数据与错误输出到控制台
+    fetch('http://localhost:8316/api/phy_health')
+      .then(function (phyRes) { return phyRes.json(); })
+      .then(function (phyData) { console.log('健康检查接口返回：', phyData); })
+      .catch(function (phyErr) { console.error('请求健康检查接口失败：', phyErr); });
+  </script>
+</body>
+</html>

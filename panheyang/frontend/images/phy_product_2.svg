@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <!-- 姓名：潘贺杨 | 学号：24002120316 | 时间：2026-11-20 | 大模型：GLM-5.3-Flash | 降噪耳机产品插画 -->
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f1531"/><stop offset="1" stop-color="#221345"/>
+    </linearGradient>
+    <linearGradient id="cup" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3c4780"/><stop offset="1" stop-color="#222a52"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#bg2)"/>
+  <circle cx="170" cy="150" r="100" fill="#8fd3ff" opacity="0.07"/>
+  <circle cx="660" cy="460" r="130" fill="#b49bff" opacity="0.07"/>
+  <path d="M250 320 a150 150 0 0 1 300 0" fill="none" stroke="#39456f" stroke-width="34" stroke-linecap="round"/>
+  <rect x="196" y="300" width="120" height="170" rx="52" fill="url(#cup)"/>
+  <rect x="484" y="300" width="120" height="170" rx="52" fill="url(#cup)"/>
+  <rect x="220" y="326" width="72" height="118" rx="34" fill="#12182f"/>
+  <rect x="508" y="326" width="72" height="118" rx="34" fill="#12182f"/>
+  <rect x="524" y="352" width="40" height="8" rx="4" fill="#d8b45a" opacity="0.9"/>
+  <rect x="524" y="368" width="40" height="8" rx="4" fill="#d8b45a" opacity="0.6"/>
+</svg>
