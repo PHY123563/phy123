@@ -1,0 +1,240 @@
+/*
+  作者：潘贺杨 | 学号：24002120316 | 时间：2026-11-26 | 大模型：GLM-5.3-Flash
+  功能：成果展示页（12.html）样式。纸色基调 + 编号徽章 + 步骤列表
+        + 深色截图卡片 + 实测说明 + 工作原理提示框。
+*/
+
+:root {
+  --ink: #17202a;
+  --muted: #66737d;
+  --paper: #f5f1e8;
+  --white: #fffdf8;
+  --coral: #ef6f61;
+  --gold: #f5c451;
+  --teal: #2c8c88;
+  --line: rgba(23, 32, 42, .14);
+  --shadow: 0 18px 45px rgba(23, 32, 42, .12);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 12% 8%, rgba(245, 196, 81, .25), transparent 24rem),
+    radial-gradient(circle at 90% 18%, rgba(44, 140, 136, .16), transparent 22rem),
+    var(--paper);
+  font-family: Georgia, "Times New Roman", "Microsoft YaHei", serif;
+  line-height: 1.6;
+}
+
+/* 顶部信息区 */
+.phy_hero {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 64px 24px 8px;
+  text-align: center;
+}
+
+.phy_hero_tag {
+  display: inline-block;
+  margin-bottom: 18px;
+  padding: 6px 18px;
+  border: 1px solid rgba(44, 140, 136, .45);
+  border-radius: 999px;
+  color: var(--teal);
+  font-family: "Microsoft YaHei", sans-serif;
+  font-size: 13px;
+  letter-spacing: 4px;
+  background: rgba(44, 140, 136, .08);
+}
+
+.phy_hero_title {
+  margin-bottom: 20px;
+  font-size: 44px;
+  letter-spacing: 2px;
+  color: var(--ink);
+}
+
+.phy_hero_meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.phy_meta_item {
+  padding: 8px 16px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  color: var(--muted);
+  font-family: "Microsoft YaHei", sans-serif;
+  font-size: 14px;
+  background: var(--white);
+}
+
+/* 返回课堂目录链接 */
+.phy_show_back {
+  display: inline-block;
+  margin-top: 16px;
+  border-bottom: 1px dashed rgba(44, 140, 136, .6);
+  color: var(--teal);
+  font-family: "Microsoft YaHei", sans-serif;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.phy_show_back:hover {
+  color: var(--coral);
+  border-bottom-color: var(--coral);
+}
+
+.phy_show_back_bottom {
+  align-self: center;
+  margin-top: 4px;
+}
+
+/* 主体列 */
+.phy_show_main {
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  gap: 44px;
+  margin: 0 auto;
+  padding: 28px 20px 48px;
+}
+
+/* 单个成果区块 */
+.phy_show_section {
+  padding: 22px 24px 26px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--white);
+  box-shadow: var(--shadow);
+}
+
+/* 区块标题行 */
+.phy_show_head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.phy_show_badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  color: #fff;
+  font-weight: 700;
+  font-size: 16px;
+  background: var(--coral);
+}
+
+.phy_show_title {
+  font-size: 22px;
+  letter-spacing: -.02em;
+  color: var(--ink);
+}
+
+/* 操作 → 效果 副标题 */
+.phy_show_flow {
+  margin: 10px 0 0 42px;
+  color: var(--teal);
+  font-family: "Microsoft YaHei", sans-serif;
+  font-size: 14px;
+}
+
+/* 操作步骤列表 */
+.phy_show_steps {
+  margin: 12px 0 0 42px;
+  padding-left: 20px;
+  color: var(--ink);
+  font-family: "Microsoft YaHei", sans-serif;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.phy_show_steps li {
+  margin-bottom: 4px;
+}
+
+/* 深色截图卡片：截图本身是深色 UI，配深色底融为一体 */
+.phy_show_shot {
+  margin: 18px 0 0;
+  padding: 10px;
+  border: 1px solid rgba(255, 255, 255, .08);
+  border-radius: 14px;
+  background: #141b2b;
+}
+
+.phy_show_shot img {
+  display: block;
+  width: 100%;
+  border-radius: 8px;
+}
+
+/* 实测说明 */
+.phy_show_caption {
+  margin-top: 12px;
+  color: var(--muted);
+  font-family: "Microsoft YaHei", sans-serif;
+  font-size: 13px;
+  text-align: center;
+}
+
+/* 工作原理提示框 */
+.phy_show_note {
+  margin-top: 16px;
+  padding: 12px 16px;
+  border-left: 4px solid var(--coral);
+  border-radius: 8px;
+  font-family: "Microsoft YaHei", sans-serif;
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--ink);
+  background: rgba(239, 111, 97, .08);
+}
+
+.phy_show_note strong {
+  color: var(--coral);
+}
+
+.phy_show_note code {
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 13px;
+  background: rgba(23, 32, 42, .08);
+}
+
+/* 页脚 */
+.phy_footer {
+  padding: 18px 0 30px;
+  color: var(--muted);
+  font-family: "Microsoft YaHei", sans-serif;
+  font-size: 12px;
+  text-align: center;
+}
+
+/* 小屏适配 */
+@media (max-width: 640px) {
+  .phy_hero_title {
+    font-size: 30px;
+  }
+
+  .phy_show_section {
+    padding: 16px 14px 20px;
+  }
+
+  .phy_show_flow,
+  .phy_show_steps {
+    margin-left: 0;
+  }
+}

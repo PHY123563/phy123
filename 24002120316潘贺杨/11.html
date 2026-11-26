@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<!--
+  作者：潘贺杨
+  创建时间：2026-11-26 01:15:00
+  模型：GLM-5.3-Flash
+  功能：成果展示页。按教程案例版式存放三份 AI 功能成果截图：
+        功能一 AI 多轮对话、功能二 图像识别、功能三 语音输入与播报，
+        每份含编号徽章、操作步骤、深色截图卡片、实测说明与工作原理提示框。
+-->
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>成果展示 | 潘贺杨 24002120316</title>
+  <link rel="stylesheet" href="11.css">
+</head>
+<body>
+  <!-- 顶部信息区 -->
+  <header class="phy_hero">
+    <p class="phy_hero_tag">成果展示</p>
+    <h1 class="phy_hero_title">三份成果截图</h1>
+    <div class="phy_hero_meta">
+      <span class="phy_meta_item">姓名：潘贺杨</span>
+      <span class="phy_meta_item">学号：24002120316</span>
+      <span class="phy_meta_item">截图来源：浏览器实测运行画面</span>
+    </div>
+    <a class="phy_show_back" href="index.html">← 返回课堂目录</a>
+  </header>
+
+  <main class="phy_show_main">
+
+    <!-- 功能一：AI 多轮对话 -->
+    <section class="phy_show_section">
+      <div class="phy_show_head">
+        <span class="phy_show_badge">1</span>
+        <h2 class="phy_show_title">功能一：AI 多轮对话</h2>
+      </div>
+      <p class="phy_show_flow">发送问题 → AI 在线应答（多轮对话）</p>
+      <ol class="phy_show_steps">
+        <li>打开「中华美食街 · 在线客服」页，后端接口为 <code>POST http://localhost:8316/api/phy_chat</code>，密钥已在 backend/.env 配置，页面无需填写。</li>
+        <li>在输入框输入问题「我们的招牌菜是什么」，按 Enter 或点「发送」。</li>
+        <li>AI 读取 system 提示词中的店铺人设，回答招牌菜：宫保鸡丁、北京烤鸭、麻婆豆腐、蟹黄小笼包和酸梅汤。</li>
+        <li>继续追问营业时间、配送范围等问题，AI 结合上下文连续应答——多轮对话生效。</li>
+      </ol>
+      <figure class="phy_show_shot">
+        <img src="img/phy_shot_chat.png" alt="在线客服多轮对话实测截图：用户提问招牌菜与 AI 店铺人设回答">
+      </figure>
+      <p class="phy_show_caption">实测：发送「我们的招牌菜是什么」，客服 AI 以店铺人设准确答出五道招牌菜并引导到店，多轮上下文连续应答正常。</p>
+      <div class="phy_show_note">
+        💡 <strong>工作原理：</strong>前端把全部历史消息组成 <code>messages</code> 数组 POST 给后端
+        <code>/api/phy_chat</code>，后端代理转发到 OpenAI 兼容接口并 SSE 流式回传；接口本身无状态，
+        「记得上文」全靠每次请求都带上历史消息。
+      </div>
+    </section>
+
+    <!-- 功能二：图像识别 -->
+    <section class="phy_show_section">
+      <div class="phy_show_head">
+        <span class="phy_show_badge">2</span>
+        <h2 class="phy_show_title">功能二：图像识别</h2>
+      </div>
+      <p class="phy_show_flow">上传图片 → 返回该图片的中文描述</p>
+      <ol class="phy_show_steps">
+        <li>点输入框左侧 📷 按钮，选择本地图片（模型要求宽高大于 28px）。</li>
+        <li>图片自动压缩（最长边 1024px）后出现缩略预览条，可点「移除图片」撤销。</li>
+        <li>发送后用户气泡内显示缩略图，后端检测到图片自动改用视觉模型。</li>
+        <li>等待返回，结果区显示该图片的中文描述。</li>
+      </ol>
+      <figure class="phy_show_shot">
+        <img src="img/phy_shot_vision.png" alt="图像识别实测截图：矿泉水瓶照片缩略图与 AI 中文特征描述">
+      </figure>
+      <p class="phy_show_caption">实测：上传桌面矿泉水瓶照片，模型回复「这张图片展示了一瓶放在桌面上的透明塑料瓶装水」，并分点描述瓶身、瓶盖与标签特征。</p>
+      <div class="phy_show_note">
+        💡 <strong>工作原理：</strong>前端把图片读成 base64 data URL，组装成 OpenAI 兼容
+        <code>content</code> 数组（text + image_url）随 JSON 提交；后端识别到图片消息自动切换
+        Qwen3-VL 视觉模型（当前平台没有视觉模型时回落硅基流动）。
+      </div>
+    </section>
+
+    <!-- 功能三：语音输入与播报 -->
+    <section class="phy_show_section">
+      <div class="phy_show_head">
+        <span class="phy_show_badge">3</span>
+        <h2 class="phy_show_title">功能三：语音输入与播报</h2>
+      </div>
+      <p class="phy_show_flow">点 🎤 说话 → 文字进输入框；开启朗读 → AI 回复自动播报</p>
+      <ol class="phy_show_steps">
+        <li>点输入框左侧 🎤 按钮，允许浏览器使用麦克风，按钮变红色呼吸高亮。</li>
+        <li>说完再点一次 🎤 结束，识别出的中文文字自动填进输入框。</li>
+        <li>点聊天窗口右上角「朗读回复：关」切换为「开」。</li>
+        <li>之后每条 AI 回复结束时自动用中文朗读，再次点击开关即停止播报。</li>
+      </ol>
+      <figure class="phy_show_shot">
+        <img src="img/phy_shot_voice.png" alt="语音输入实测截图：正在聆听提示气泡、识别文字填入输入框与朗读回复开关">
+      </figure>
+      <p class="phy_show_caption">实测：点击 🎤 后出现「正在聆听，请说话…（再次点击 ⚡ 结束）」提示气泡，说话内容自动填入输入框，右上角可切换「朗读回复」。</p>
+      <div class="phy_show_note">
+        💡 <strong>工作原理：</strong>语音识别用浏览器 Web Speech API（SpeechRecognition，zh-CN）
+        本地转文字；播报用 speechSynthesis 语音合成朗读——均为浏览器内置能力，不消耗任何 API 密钥，
+        需在 Edge / Chrome 的 localhost 或 https 环境下使用。
+      </div>
+    </section>
+
+    <a class="phy_show_back phy_show_back_bottom" href="index.html">← 返回课堂目录</a>
+  </main>
+
+  <footer class="phy_footer">
+    <p>© 2026 潘贺杨 · 24002120316 · 高级网页设计课程作业</p>
+  </footer>
+</body>
+</html>

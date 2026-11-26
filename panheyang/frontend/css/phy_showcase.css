@@ -1,0 +1,147 @@
+/* 成果展示页（showcase.html）样式：编号徽章 + 步骤 + 深色截图卡片 + 工作原理提示框 */
+
+/* 主体列宽与节奏 */
+.phy_show_main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 44px;
+}
+
+/* 顶部返回首页链接 */
+.phy_show_back {
+  display: inline-block;
+  margin-top: 14px;
+  color: #2c8c88;
+  text-decoration: none;
+  font-size: 14px;
+  border-bottom: 1px dashed rgba(44, 140, 136, 0.6);
+}
+
+.phy_show_back:hover {
+  color: #ef6f61;
+  border-bottom-color: #ef6f61;
+}
+
+.phy_show_back_bottom {
+  margin-top: 4px;
+  text-align: center;
+  align-self: center;
+}
+
+/* 单个成果区块 */
+.phy_show_section {
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(23, 32, 42, 0.08);
+  border-radius: 16px;
+  padding: 22px 24px 26px;
+  box-shadow: 0 6px 24px rgba(23, 32, 42, 0.06);
+}
+
+/* 区块标题行：编号徽章 + 标题 */
+.phy_show_head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.phy_show_badge {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #ef6f61;
+  color: #fff;
+  font-weight: 700;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.phy_show_title {
+  margin: 0;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 22px;
+  color: #17202a;
+}
+
+/* 操作 → 效果 副标题 */
+.phy_show_flow {
+  margin: 10px 0 0 42px;
+  color: #2c8c88;
+  font-size: 14px;
+}
+
+/* 操作步骤列表 */
+.phy_show_steps {
+  margin: 12px 0 0 42px;
+  padding-left: 20px;
+  color: #17202a;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.phy_show_steps li {
+  margin-bottom: 4px;
+}
+
+/* 深色截图卡片：截图本身是深色 UI，配深色底融为一体 */
+.phy_show_shot {
+  margin: 18px 0 0;
+  background: #141b2b;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 10px;
+}
+
+.phy_show_shot img {
+  display: block;
+  width: 100%;
+  border-radius: 8px;
+}
+
+/* 实测说明：居中浅灰小字 */
+.phy_show_caption {
+  margin: 12px 0 0;
+  text-align: center;
+  color: rgba(23, 32, 42, 0.55);
+  font-size: 13px;
+}
+
+/* 工作原理提示框：珊瑚色底 + 左侧色条 */
+.phy_show_note {
+  margin-top: 16px;
+  background: rgba(239, 111, 97, 0.08);
+  border-left: 4px solid #ef6f61;
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 14px;
+  line-height: 1.8;
+  color: #17202a;
+}
+
+.phy_show_note strong {
+  color: #ef6f61;
+}
+
+.phy_show_note code {
+  background: rgba(23, 32, 42, 0.08);
+  border-radius: 4px;
+  padding: 1px 6px;
+  font-size: 13px;
+}
+
+/* 小屏适配：收紧内边距 */
+@media (max-width: 640px) {
+  .phy_show_section {
+    padding: 16px 14px 20px;
+  }
+
+  .phy_show_flow,
+  .phy_show_steps {
+    margin-left: 0;
+  }
+}

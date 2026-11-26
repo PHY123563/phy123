@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<!--
+  姓名：潘贺杨 | 学号：24002120316 | 时间：2026-11-25 | 大模型：GLM-5.3-Flash
+  功能：在线客服页。与 AI 聊天页共用同一个后端接口 POST /api/phy_chat，只在请求体里
+        多传一个 system 字段把人设换成「中华美食街在线客服」，只回答营业时间、招牌菜、
+        配送范围三类问题，其他问题礼貌引导用户留言。后端已配置七牛 Key，页面无需填写密钥。
+-->
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>在线客服 | 潘贺杨 24002120316</title>
+  <link rel="stylesheet" href="css/phy_index.css">
+  <link rel="stylesheet" href="css/phy_chat.css">
+</head>
+<body>
+  <!-- canvas 背景动画层（与首页共用） -->
+  <canvas id="phy_canvas_bg" aria-hidden="true"></canvas>
+
+  <!-- 顶部信息区 -->
+  <header class="phy_hero phy_chat_hero">
+    <p class="phy_hero_tag">在线客服</p>
+    <h1 class="phy_hero_title">中华美食街 · 在线客服</h1>
+    <div class="phy_hero_meta">
+      <span class="phy_meta_item">姓名：潘贺杨</span>
+      <span class="phy_meta_item">学号：24002120316</span>
+      <span class="phy_meta_item">模型：conatus-free（七牛）</span>
+    </div>
+  </header>
+
+  <!-- 主体：接口信息 + 聊天窗口 -->
+  <main class="phy_nav_main">
+    <div class="phy_chat_api">
+      <span class="phy_chat_api_label">后端接口：</span>
+      <a class="phy_chat_api_link" href="http://localhost:8316/api/phy_health" target="_blank" rel="noopener">POST http://localhost:8316/api/phy_chat</a>
+    </div>
+
+    <!-- 聊天窗口（由 js/phy_service.js 动态渲染消息） -->
+    <section class="phy_chat_window">
+      <div class="phy_chat_head">
+        <span class="phy_chat_status"><span class="phy_chat_dot phy_chat_dot_off" id="phy_chat_dot"></span><span id="phy_chat_status_text">未就绪</span></span>
+        <button class="phy_chat_clear" id="phy_chat_clear" type="button">清空对话</button>
+      </div>
+      <div class="phy_chat_log" id="phy_chat_log"></div>
+      <div class="phy_chat_inputbar">
+        <textarea id="phy_chat_input" rows="1" placeholder="咨询营业时间、招牌菜、配送范围…Enter 发送，Shift+Enter 换行"></textarea>
+        <button class="phy_chat_send" id="phy_chat_send" type="button">发送</button>
+      </div>
+    </section>
+
+    <p class="phy_chat_hint">本页与 AI 聊天页共用同一个后端接口，只在 system 提示词里换了「中华美食街在线客服」人设；密钥已在 backend/.env 中配置（七牛 sk-…），无需填写。常见问题：营业时间 / 招牌菜 / 配送范围，其他问题请留言。</p>
+  </main>
+
+  <footer class="phy_footer">
+    <p>© 2026 潘贺杨 · 24002120316 · 高级网页设计课程作业</p>
+  </footer>
+
+  <script src="js/phy_canvas_bg.js"></script>
+  <script src="js/phy_service.js"></script>
+</body>
+</html>

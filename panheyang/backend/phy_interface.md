@@ -91,3 +91,15 @@
 
 失败示例：{ "code": 1, "msg": "产品列表查询失败：……", "data": null } | 修改时间：2026-11-20
 
+接口路径：/api/phy_chat | HTTP 方法：POST | 请求参数：JSON body { "messages": [{ "role": "user", "content": "你好" }], "apiKey": "可选，未传时读取 backend/.env 的 SILICONFLOW_API_KEY" }（示例：POST http://localhost:8316/api/phy_chat）| 响应格式：成功时为 SSE 流式（Content-Type: text/event-stream），每行为 `data: {OpenAI 格式 chunk}`，以 `data: [DONE]` 结束；密钥缺失或入参错误时返回统一 JSON，code=1。错误示例：
+
+```json
+{
+  "code": 1,
+  "msg": "未配置硅基流动密钥：请在页面填写 API Key，或在 backend/.env 里配置 SILICONFLOW_API_KEY",
+  "data": null
+}
+```
+
+| 修改时间：2026-11-25
+

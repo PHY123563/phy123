@@ -10,9 +10,9 @@ const phyCors = require('cors');
 const phyApp = phyExpress();
 const phyPort = Number(process.env.SERVER_PORT) || 8316;
 
-// 开放全部跨域（仅课程作业使用）与 JSON 请求解析
+// 开放全部跨域（仅课程作业使用）与 JSON 请求解析（放宽到 10MB，容纳图片 base64）
 phyApp.use(phyCors());
-phyApp.use(phyExpress.json());
+phyApp.use(phyExpress.json({ limit: '10mb' }));
 
 // 托管前端静态资源目录
 phyApp.use(phyExpress.static(phyPath.join(__dirname, '..', 'frontend')));
@@ -22,6 +22,7 @@ phyApp.use('/api', require('./routes/phy_health_routes'));
 phyApp.use('/api', require('./routes/phy_db_routes'));
 phyApp.use('/api', require('./routes/phy_news_routes'));
 phyApp.use('/api', require('./routes/phy_product_routes'));
+phyApp.use('/api', require('./routes/phy_chat_routes'));
 
 // 404 兜底：统一 JSON 响应格式
 phyApp.use((phyReq, phyRes) => {

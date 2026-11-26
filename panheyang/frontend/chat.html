@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<!--
+  姓名：潘贺杨 | 学号：24002120316 | 时间：2026-11-25 | 大模型：GLM-5.3-Flash
+  功能：AI 聊天页。前端把对话消息提交到后端 POST /api/phy_chat，由后端代理 OpenAI 兼容
+        接口并流式转发回复，页面逐字渲染 AI 消息。支持多平台切换（七牛/硅基流动下拉框）、
+        图片识别（base64 image_url 随消息发送，后端自动改用视觉模型）、语音输入（🎤 用
+        浏览器 Web Speech API 转文字）与语音播报（speechSynthesis 朗读 AI 回复）。密钥
+        保存在浏览器 localStorage，或配置在 backend/.env（优先级：.env > 页面输入）。
+-->
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI 聊天 | 潘贺杨 24002120316</title>
+  <link rel="stylesheet" href="css/phy_index.css">
+  <link rel="stylesheet" href="css/phy_chat.css">
+</head>
+<body>
+  <!-- canvas 背景动画层（与首页共用） -->
+  <canvas id="phy_canvas_bg" aria-hidden="true"></canvas>
+
+  <!-- 顶部信息区 -->
+  <header class="phy_hero phy_chat_hero">
+    <p class="phy_hero_tag">AI 聊天应用</p>
+    <h1 class="phy_hero_title">AI 助教 · 在线对话</h1>
+    <div class="phy_hero_meta">
+      <span class="phy_meta_item">姓名：潘贺杨</span>
+      <span class="phy_meta_item">学号：24002120316</span>
+      <span class="phy_meta_item">模型：conatus-free（七牛）</span>
+    </div>
+  </header>
+
+  <!-- 主体：接口信息 + 聊天窗口 -->
+  <main class="phy_nav_main">
+    <div class="phy_chat_api">
+      <span class="phy_chat_api_label">后端接口：</span>
+      <a class="phy_chat_api_link" href="http://localhost:8316/api/phy_health" target="_blank" rel="noopener">POST http://localhost:8316/api/phy_chat</a>
+    </div>
+
+    <!-- 聊天窗口（由 js/phy_chat.js 动态渲染消息） -->
+    <section class="phy_chat_window">
+      <div class="phy_chat_head">
+        <span class="phy_chat_status"><span class="phy_chat_dot phy_chat_dot_off" id="phy_chat_dot"></span><span id="phy_chat_status_text">未就绪</span></span>
+        <button class="phy_chat_clear" id="phy_chat_speak" type="button" title="朗读 AI 的回复（浏览器语音合成）">朗读回复：关</button>
+        <button class="phy_chat_clear" id="phy_chat_clear" type="button">清空对话</button>
+      </div>
+      <div class="phy_chat_log" id="phy_chat_log"></div>
+      <!-- 图片预览条：选择图片后显示，随下一条消息一起发送 -->
+      <div class="phy_chat_imgbar" id="phy_chat_imgbar" hidden>
+        <img id="phy_chat_img_preview" alt="待发送图片预览">
+        <button class="phy_chat_clear" id="phy_chat_img_remove" type="button">移除图片</button>
+      </div>
+      <div class="phy_chat_inputbar">
+        <input type="file" id="phy_chat_file" accept="image/*" hidden>
+        <button class="phy_chat_imgbtn" id="phy_chat_imgbtn" type="button" title="选择图片（自动使用视觉模型识别）">📷</button>
+        <button class="phy_chat_imgbtn phy_chat_micbtn" id="phy_chat_mic" type="button" title="语音输入（浏览器语音识别，Edge/Chrome 支持）">🎤</button>
+        <textarea id="phy_chat_input" rows="1" placeholder="输入消息或附一张图片，Enter 发送，Shift+Enter 换行…"></textarea>
+        <button class="phy_chat_send" id="phy_chat_send" type="button">发送</button>
+      </div>
+    </section>
+
+    <!-- 平台切换条：各平台密钥都在 backend/.env，前端只传 platform 标识，切换后立即生效 -->
+    <div class="phy_chat_keybar phy_chat_platformbar">
+      <label for="phy_chat_platform">模型平台</label>
+      <select id="phy_chat_platform" class="phy_chat_platform">
+        <option value="qiniu" selected>七牛 · conatus-free</option>
+        <option value="siliconflow">硅基流动 · DeepSeek-V4-Flash</option>
+      </select>
+    </div>
+
+    <!-- 密钥设置条：优先使用 backend/.env 的密钥 -->
+    <div class="phy_chat_keybar">
+      <label for="phy_chat_key">API Key</label>
+      <input type="password" id="phy_chat_key" placeholder="若 backend/.env 已配置密钥可留空；否则粘贴平台 sk-…（仅存本机浏览器）" autocomplete="off">
+      <button class="phy_chat_clear" id="phy_chat_key_save" type="button">保存密钥</button>
+    </div>
+    <p class="phy_chat_hint">密钥只保存在你的浏览器 localStorage 或后端 .env 中，不会写入代码文件；当前后端使用七牛（OpenAI 兼容）接口 https://api.qnaigc.com/v1，模型 qiniu/conatus-free。发送图片时自动改用视觉模型 Qwen3-VL（图片识别走硅基流动，七牛的 VL 系列已下线）。</p>
+  </main>
+
+  <footer class="phy_footer">
+    <p>© 2026 潘贺杨 · 24002120316 · 高级网页设计课程作业</p>
+  </footer>
+
+  <script src="js/phy_canvas_bg.js"></script>
+  <script src="js/phy_chat.js"></script>
+</body>
+</html>

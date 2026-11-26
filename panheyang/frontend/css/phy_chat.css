@@ -1,0 +1,340 @@
+/*
+  姓名：潘贺杨 | 学号：24002120316 | 时间：2026-11-25 | 大模型：GLM-5.3-Flash
+  功能：AI 聊天页样式。深色玻璃拟态风格，聊天窗口、消息气泡、密钥输入条。
+*/
+
+/* 顶部区压缩高度 */
+.phy_chat_hero {
+  padding-top: 56px;
+  padding-bottom: 10px;
+}
+
+.phy_chat_hero .phy_hero_title {
+  font-size: 34px;
+  margin-bottom: 12px;
+}
+
+/* 接口信息条 */
+.phy_chat_api {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: rgba(143, 211, 255, 0.08);
+  border: 1px solid rgba(143, 211, 255, 0.35);
+  font-size: 13px;
+}
+
+.phy_chat_api_label {
+  color: #aeb7cc;
+}
+
+.phy_chat_api_link {
+  color: #8fd3ff;
+  text-decoration: none;
+  font-family: Consolas, monospace;
+  border-bottom: 1px dashed rgba(143, 211, 255, 0.6);
+}
+
+.phy_chat_api_link:hover {
+  color: #b9e4ff;
+}
+
+/* 聊天窗口 */
+.phy_chat_window {
+  max-width: 820px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(10px);
+  overflow: hidden;
+}
+
+.phy_chat_head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(143, 211, 255, 0.06);
+}
+
+.phy_chat_status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #aeb7cc;
+  font-size: 13px;
+}
+
+.phy_chat_dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #58d0a6;
+}
+
+.phy_chat_dot.phy_chat_dot_off {
+  background: #ef8f7a;
+}
+
+.phy_chat_dot.phy_chat_dot_busy {
+  background: #f5c451;
+  animation: phy_chat_blink 1s ease-in-out infinite;
+}
+
+@keyframes phy_chat_blink {
+  50% { opacity: .2; }
+}
+
+.phy_chat_clear {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: transparent;
+  color: #aeb7cc;
+  padding: 5px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: all .2s ease;
+}
+
+.phy_chat_clear:hover {
+  border-color: #ef8f7a;
+  color: #ef8f7a;
+}
+
+/* 消息列表 */
+.phy_chat_log {
+  height: 420px;
+  overflow-y: auto;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  text-align: left;
+}
+
+.phy_chat_msg {
+  max-width: 78%;
+  padding: 11px 15px;
+  font-size: 14px;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.phy_chat_msg_user {
+  align-self: flex-end;
+  background: rgba(143, 211, 255, 0.16);
+  border: 1px solid rgba(143, 211, 255, 0.4);
+  color: #eaf6ff;
+  border-radius: 12px 12px 3px 12px;
+}
+
+.phy_chat_msg_ai {
+  align-self: flex-start;
+  background: rgba(184, 167, 255, 0.1);
+  border: 1px solid rgba(184, 167, 255, 0.35);
+  color: #f0edff;
+  border-radius: 12px 12px 12px 3px;
+}
+
+.phy_chat_msg_ai.phy_chat_typing::after {
+  content: "▌";
+  color: #b8a7ff;
+  animation: phy_chat_blink .8s steps(1) infinite;
+}
+
+.phy_chat_msg_error {
+  align-self: center;
+  max-width: 92%;
+  background: rgba(239, 111, 97, 0.12);
+  border: 1px solid rgba(239, 143, 122, 0.45);
+  color: #ffb3a3;
+  border-radius: 10px;
+  font-size: 13px;
+}
+
+/* 输入区 */
+.phy_chat_inputbar {
+  display: flex;
+  gap: 10px;
+  padding: 14px 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.phy_chat_inputbar textarea {
+  flex: 1;
+  resize: none;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.08);
+  color: #eef2fa;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-family: inherit;
+  line-height: 1.6;
+  outline: none;
+  transition: border-color .2s ease;
+}
+
+.phy_chat_inputbar textarea:focus {
+  border-color: #8fd3ff;
+}
+
+.phy_chat_send {
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #6fb6ff, #b8a7ff);
+  color: #14202e;
+  padding: 0 22px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 700;
+  transition: transform .15s ease, opacity .2s ease;
+}
+
+.phy_chat_send:hover {
+  transform: translateY(-2px);
+}
+
+.phy_chat_send:disabled {
+  opacity: .4;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* 密钥设置条 */
+.phy_chat_keybar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 16px auto 0;
+  max-width: 820px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: 1px dashed rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.phy_chat_keybar label {
+  color: #aeb7cc;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.phy_chat_keybar input {
+  flex: 1;
+  min-width: 0;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.08);
+  color: #eef2fa;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  outline: none;
+}
+
+.phy_chat_keybar input:focus {
+  border-color: #8fd3ff;
+}
+
+/* 平台切换下拉框：与密钥输入框同款外观 */
+.phy_chat_keybar select {
+  flex: 1;
+  min-width: 0;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.08);
+  color: #eef2fa;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+}
+
+.phy_chat_keybar select:focus {
+  border-color: #8fd3ff;
+}
+
+.phy_chat_keybar select option {
+  color: #17202a;
+}
+
+/* 图片上传按钮：与发送按钮同排的方形图标按钮 */
+.phy_chat_imgbtn {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.08);
+  color: #eef2fa;
+  border-radius: 8px;
+  font-size: 18px;
+  line-height: 1;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.phy_chat_imgbtn:hover {
+  border-color: #8fd3ff;
+}
+
+/* 待发送图片预览条：虚线框 + 缩略图 + 移除按钮 */
+.phy_chat_imgbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 10px auto 0;
+  max-width: 820px;
+  padding: 8px 16px;
+  border: 1px dashed rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.phy_chat_imgbar img {
+  max-height: 64px;
+  max-width: 160px;
+  border-radius: 8px;
+}
+
+/* 用户消息气泡里的图片缩略图 */
+.phy_chat_msg_img {
+  max-width: 200px;
+  max-height: 150px;
+  border-radius: 8px;
+  display: block;
+  margin-bottom: 6px;
+}
+
+/* 🎤 录音中状态：红色高亮 + 呼吸动画 */
+.phy_chat_micbtn_listening {
+  border-color: #ff6b6b;
+  background: rgba(255, 107, 107, 0.2);
+  animation: phy_mic_pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes phy_mic_pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.4); }
+  50% { box-shadow: 0 0 0 6px rgba(255, 107, 107, 0.15); }
+}
+
+.phy_chat_hint {
+  margin: 12px auto 0;
+  max-width: 820px;
+  color: #aeb7cc;
+  font-size: 12px;
+}
+
+.phy_chat_hint a {
+  color: #8fd3ff;
+}
+
+@media (max-width: 640px) {
+  .phy_chat_msg { max-width: 92%; }
+  .phy_chat_send { padding: 0 14px; }
+}
